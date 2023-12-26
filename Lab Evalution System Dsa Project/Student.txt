@@ -1,0 +1,5 @@
+
+01-131212-001|adil|shahzad|male|20|03059745235|adil@gmail.com|CC|DSA
+01-131212-002|sani|sani|male|21|03117803969|sani@gmail.com|CC
+01-131212-003|ahmed|ahmed|male|20|03099715231|ahmed123@gmail.com|CC
+01-131212-004|usman|khan|mal|20|56|56|CF
