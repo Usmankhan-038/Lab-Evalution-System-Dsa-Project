@@ -9,7 +9,7 @@
 
 using namespace std;
 
-
+//Edited
 Trie trie;
 
 class Teacher
@@ -18,7 +18,7 @@ private:
     string teacherName, id, password, course;
 public:
     Teacher();
-    void setData(string tn, string id, string pw, string c);
+    void setData(string teacherName, string id, string pass, string course);
 };
 Teacher::Teacher()
 {
@@ -27,12 +27,12 @@ Teacher::Teacher()
     password = " ";
     course = " ";
 }
-void Teacher::setData(string tn, string id, string pw, string c)
+void Teacher::setData(string teacherName, string id, string pass, string course)
 {
-    teacherName = tn;
+    this->teacherName = teacherName;
     this->id = id;
-    password = pw;
-    course = c;
+    password = pass;
+    this->course = course;
 }
 
 class Student
@@ -43,14 +43,14 @@ protected:
 
 public:
     Student();
-    void setStudentName(string sn);
-    void setEnrollment(string sn);
-    void setFatherName(string sn);
-    void setGender(string sn);
-    void setPhoneNo(string sn);
-    void setCourse(string sn);
-    void setEmail(string sn);
-    void setAge(int sn);
+    void setStudentName(string student);
+    void setEnrollment(string enrol);
+    void setFatherName(string father);
+    void setGender(string gender);
+    void setPhoneNo(string number);
+    void setCourse(string course);
+    void setEmail(string email);
+    void setAge(int age);
     string getStudentName();
     string getEnrollment();
 };
@@ -65,17 +65,17 @@ Student::Student()
     age = 0;
     enrollment = "";
 }
-void Student::setStudentName(string sn)
+void Student::setStudentName(string student)
 {
-    studentName = sn;
+    studentName = student;
 }
-void Student::setFatherName(string sn)
+void Student::setFatherName(string father)
 {
-    fatherName = sn;
+    fatherName = father;
 }
-void Student::setEnrollment(string sn)
+void Student::setEnrollment(string enrol)
 {
-    enrollment = sn;
+    enrollment = enrol;
 }
 void Student::setCourse(string sn)
 {
@@ -85,17 +85,17 @@ void Student::setPhoneNo(string sn)
 {
     phoneNumber = sn;
 }
-void Student::setGender(string sn)
+void Student::setGender(string gender)
 {
-    gender = sn;
+    this->gender = gender;
 }
-void Student::setAge(int sn)
+void Student::setAge(int age)
 {
-    age = sn;
+    this->age = age;
 }
-void Student::setEmail(string sn)
+void Student::setEmail(string email)
 {
-    email = sn;
+    this->email = email;
 }
 string Student::getStudentName()
 {
@@ -111,17 +111,17 @@ private:
     string labNo, labName, labType, date, remarks;
     float rubric1, rubric2, rubric3, rubric4, total, result, finalResult;
 public:
-    void setLab(string lbn, string ln, string ty, string r, string sn, float r1, float r2, float r3, float r4, float t);
-    void setLabNo(string lb);
-    void setLabName(string lb);
-    void setLabType(string lb);
-    void setDate(string lb);
-    void setRemarks(string lb);
-    void setRubOne(float lb);
-    void setRubSec(float lb);
-    void setRubThrd(float lb);
-    void setRubForth(float lb);
-    void setTotal(float lb);
+    void setLab(string lNumber, string lName, string lType, string remarks, string date, float rub1, float rub2, float rub3, float rub4, float lTotal);
+    void setLabNo(string lNumber);
+    void setLabName(string lName);
+    void setLabType(string lType);
+    void setDate(string date);
+    void setRemarks(string remarks);
+    void setRubOne(float rub1);
+    void setRubSec(float rub2);
+    void setRubThrd(float rub1);
+    void setRubForth(float rub4);
+    void setTotal(float lTotal);
     string getLabNo();
     string getLabName();
     string getLabType();
@@ -153,45 +153,45 @@ ostream& operator<<(ostream& os, const Lab& lab)
     os << lab.labNo << "|" << lab.labName << "|" << lab.labType << "|" << lab.enrollment << "|" << lab.studentName << "|" << lab.rubric1 << "|" << lab.rubric2 << "|" << lab.rubric3 << "|" << lab.rubric4 << "|" << lab.total;
     return os;
 }
-void Lab::setLabNo(string lb)
+void Lab::setLabNo(string lNumber)
 {
-    labNo = lb;
+    labNo = lNumber;
 }
-void Lab::setLabName(string lb)
+void Lab::setLabName(string lName)
 {
-    labName = lb;
+    labName = lName;
 }
-void Lab::setLabType(string lb)
+void Lab::setLabType(string lType)
 {
-    labType = lb;
+    labType = lType;
 }
-void Lab::setDate(string lb)
+void Lab::setDate(string date)
 {
-    date = lb;
+    date = date;
 }
-void Lab::setRemarks(string lb)
+void Lab::setRemarks(string remarks)
 {
-    remarks = lb;
+    remarks = remarks;
 }
-void Lab::setRubOne(float lb)
+void Lab::setRubOne(float rub1)
 {
-    rubric1 = lb;
+    rubric1 = rub1;
 }
-void Lab::setRubSec(float lb)
+void Lab::setRubSec(float rub2)
 {
-    rubric2 = lb;
+    rubric2 = rub2;
 }
-void Lab::setRubThrd(float lb)
+void Lab::setRubThrd(float rub3)
 {
-    rubric3 = lb;
+    rubric3 = rub3;
 }
-void Lab::setRubForth(float lb)
+void Lab::setRubForth(float rub4)
 {
-    rubric4 = lb;
+    rubric4 = rub4;
 }
-void Lab::setTotal(float lb)
+void Lab::setTotal(float lTotal)
 {
-    total = lb;
+    total = lTotal;
 }
 float Lab::getRubOne()
 {
@@ -274,16 +274,16 @@ int main()
     List<Lab> studentList;
     List<Teacher> teacherList;
     int choice;
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                          Welcome to Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *******************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Main Menu>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *******************    \n";
-    cout << "\n\t\t\t\t\t[1] Administrative"; 
-    cout << "\n\n\t\t\t\t\t[2] Teacher ";
-    cout << "\n\n\t\t\t\t\t[0] Exit \n";
-    cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                          Welcome to Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *******************    \n";
+    cout << "\t\t\t\t\t\t      << Main Menu >>    \n";
+    cout << "\t\t\t\t\t\t    *******************    \n";
+    cout << "\n\t\t\t[1] Administrative"; 
+    cout << "\n\n\t\t\t[2] Teacher ";
+    cout << "\n\n\t\t\t[0] Exit \n";
+    cout << "\n\n\t\t\tEnter choice : ";
     cin >> choice;
     switch (choice)
     {
@@ -305,86 +305,108 @@ int main()
 
 void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
 {
-    system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Admin Login>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
-    string number = "usman123";
-    string id = "usman@123";
-    string iD;
-    string pass;
-    cin.ignore();
-    cout << "\n\n\t\t\t\t\t\tEnter ID : ";
-    getline(cin, iD);
-    cout << "\n\n\t\t\t\t\t\tEnter Password : ";
-    char cha;
-    for (int i = 0; i >= 0;)
+    char choice = 'y';
+    while (choice == 'y' || choice == 'Y')
     {
-        cha = _getch();
-        if (cha != 13 && cha != 8)
+        system("cls");
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t\t\t      << Admin Login >>    \n";
+        cout << "\t\t\t\t\t\t    *********************    \n";
+        string number = "usman123";
+        string id = "usman@123";
+        string iD;
+        string pass;
+        cin.ignore();
+        cout << "\n\n\t\t\t\tEnter ID : ";
+        getline(cin, iD);
+        cout << "\n\n\t\t\t\tEnter Password : ";
+        char cha;
+        for (int i = 0; i >= 0;)
         {
-            pass.push_back(cha);
-            cout << '*';
-            i++;
-        }
-        else if (cha == 8) // if backspace is presssed
-        {
-            if (i != 0)
+            cha = _getch();
+            if (cha != 13 && cha != 8)
             {
-                cout << "\b \b"; // moves cursor to the left print <space> again move cursor to left
-                i--;
+                pass.push_back(cha);
+                cout << '*';
+                i++;
+            }
+            else if (cha == 8) // if backspace is presssed
+            {
+                if (i != 0)
+                {
+                    cout << "\b \b"; // moves cursor to the left print <space> again move cursor to left
+                    i--;
+                }
+            }
+            else if (cha == 13)
+            {
+                break;         // for end of string
             }
         }
-        else if (cha == 13)
+        if (pass == number && iD == id)
         {
-            break;         // for end of string
+            cout << "\n\n\n\t\t\t\t\t\t  << login successfully >>\n\n";
+            cout << "\t\t\t\t";
+            system("pause");
+            Admin(studentList, teacherList);
+
+        }
+        else
+        {
+            while (true)
+            {
+                cout << "\n\n\n\t\t\t\t\t\t\t\t  ERROR!!!!!";
+                cout << "\n\n\n\t\t\t\t\t\t  <<< UNAUTHORIZED ACCESS !! >>>\n";
+                cout << "\t\t\t\tDo You Want To Try Again[Y/N]: ";
+                choice = _getche();
+
+                if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N')
+                    break;
+            }
+            if (choice == 'n' || choice == 'N')
+                main();
+            
         }
     }
-    if (pass == number && iD == id)
-    {
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  <<<<<login successfully>>>>>\n";
-
-        system("pause");
-        Admin(studentList, teacherList);
-
-    }
-    else
-    {
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  ERROR!!!!!";
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  <<<<<<<<UNAUTHORIZED ACCESS !!>>>>>>>>\n";
-        adminLogin(studentList, teacherList);
-    }
+    
 }
 
 void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
 {
-    system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Admin Panel>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
-    int choice;
-    cout << "\n\t\t\t\t\t [1] Registeration"; 
-    cout << "\n\n\t\t\t\t\t[2] View Detail";
-    cout<<"\n\n\t\t\t\t\t[0] exit \n";
-    cout << "\n\n\t\t\t\t\t\tEnter choice : ";
-    cin >> choice;
+    char choice;
+    while (true)
+    {
+        
+        system("cls");
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
+        cout << "\t\t\t\t\t\t    *********************    \n";
+        cout << "\n\t\t\t[1] Registeration";
+        cout << "\n\n\t\t\t[2] View Detail";
+        cout << "\n\n\t\t\t[0] exit \n";
+        cout << "\n\n\t\t\tEnter choice : ";
+        cin >> choice;
+        if (choice == '1' || choice == '2' || choice == '0')
+            break;
+
+    }
     switch (choice)
     {
-    case 1:
+    case '1':
         system("cls");
         getRegister(studentList, teacherList);
         break;
-    case 2:
+    case '2':
         system("cls");
         viewDetail(studentList, teacherList);
         break;
-    case 0:
+    case '0':
         system("cls");
         main();
         break;
@@ -392,17 +414,18 @@ void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\n\t\t\tInvalid input. Try again." << endl;
         break;
     }
+    
 }
 
 void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Admin Panel>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     fstream file;
     int choice;
     Teacher obj1;
@@ -410,10 +433,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
     string data, studentName = "", fatherName = "", email = "", phoneNumber = "", gender = "", enrollment = "01-131212-000", teacherName = "", id = "", password = "", courseT1 = "", course1 = "";
     int age = 0;
     string course, courseT;
-    cout << "\n\t\t\t\t\t [1] Student Registeration\n\n\t\t\t\t\t"; 
-    cout << "[2] Teacher Registeration\n\n\t\t\t\t\t";
-    cout << "[0] Exit\n";
-    cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+    cout << "\n\t\t\t[1] Student Registeration"; 
+    cout << "\n\n\t\t\t[2] Teacher Registeration";
+    cout << "\n\n\t\t\t[0] Exit\n";
+    cout << "\n\n\t\t\tEnter choice : ";
     cin >> choice;
     char ch;
     switch (choice)
@@ -422,12 +445,12 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         do
         {
             system("cls");
-            cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-            cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-            cout << "\t\t\t\t\t******************************************************************************\n\n";
-            cout << "\t\t\t\t\t\t\t\t    **********************  \n";
-            cout << "\t\t\t\t\t\t\t\t    <<<<<Registration>>>>>    \n";
-            cout << "\t\t\t\t\t\t\t\t    **********************   \n";
+            cout << "\n\t\t\t******************************************************************************\n\n";
+            cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+            cout << "\t\t\t******************************************************************************\n\n";
+            cout << "\t\t\t\t\t\t    **********************  \n";
+            cout << "\t\t\t\t\t\t      << Registration >>    \n";
+            cout << "\t\t\t\t\t\t    **********************   \n";
             course = "";
             file.open("Student.txt");
             if (file.is_open())
@@ -463,17 +486,17 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                 enrollment[12]++;
             }
             cin.ignore();
-            cout << "\n\n\t\t\t\t\t\t\tEnter detail of Student w" << endl << endl;
+            cout << "\n\n\t\t\t\t\tEnter detail of Student w" << endl << endl;
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Name: ";
+                cout << "\n\n\t\t\t\tEnter Name: ";
                 getline(cin, studentName);
 
                 if (studentName.length() < 4)
                 {
-                    cout << "\n\nPlease Enter Correct Name. There are Some Rules For Entering Name."<<endl;
-                    cout << "[1] Your name Should be atleast 4 character..." << endl;
-                    cout << "[2] You should Enter Full Name..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name."<<endl;
+                    cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
+                    cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
                     system("pause");
                     continue;
                 }
@@ -484,14 +507,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Father Name: ";
+                cout << "\n\n\t\t\t\tEnter Father Name: ";
                 getline(cin, fatherName);
 
                 if (fatherName.length() < 4)
                 {
-                    cout << "\n\nPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your name Should be atleast 4 character..." << endl;
-                    cout << "[2] You should Enter Full Name..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
+                    cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
                     system("pause");
                     continue;
                 }
@@ -502,16 +525,16 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Email: ";
+                cout << "\n\n\t\t\t\tEnter Email: ";
                 getline(cin, email);
 
-                if (email.length() < 13)
+                if (email.length() < 13 || email.substr(email.length() - 10) != "@gmail.com")
                 {
-                    cout << "\n\nPlease Enter Email. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your Email Should be atleast 13 character..." << endl;
-                    cout << "[2] You should Enter Authentic Email..." << endl;
-                    cout << "[3] Your Email should Contain @gmail.com..." << endl;
-                    cout << "[4] Example example@gmail.com" << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Email. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your Email Should be atleast 13 character..." << endl;
+                    cout << "\t\t\t\t[2] You should Enter Authentic Email..." << endl;
+                    cout << "\t\t\t\t[3] Your Email should Contain @gmail.com..." << endl;
+                    cout << "\t\t\t\t[4] Example example@gmail.com" << endl;
                     system("pause");
                     continue;
                 }
@@ -522,14 +545,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Phone Number: ";
+                cout << "\n\n\t\t\t\tEnter Phone Number: ";
                 getline(cin, phoneNumber);
 
-                if (phoneNumber.length() < 13)
+                if (phoneNumber.length() < 11)
                 {
-                    cout << "\n\nPlease Enter Correct Phone. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your Phone Number Should be atleast 11 Digits..." << endl;
-                    cout << "[2] You should Enter +92 OR 0 at the Start of Number..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Phone. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your Phone Number Should be atleast 11 Digits..." << endl;
+                    cout << "\t\t\t\t[2] You should Enter +92 OR 0 at the Start of Number..." << endl;
                     system("pause");
                     continue;
                 }
@@ -540,13 +563,13 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Gender [M/F]: ";
+                cout << "\n\n\t\t\t\tEnter Gender [M/F]: ";
                 getline(cin, gender);
 
                 if (gender!="M"|| gender != "m"|| gender != "f"|| gender != "F")
                 {
-                    cout << "\n\nPlease Enter Correct Gender" << endl;
-                    cout << "[1] Your Gender Should be Male [M/m] Or Female [F/f]" << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Gender" << endl;
+                    cout << "\t\t\t\t[1] Your Gender Should be Male [M/m] Or Female [F/f]" << endl;
                     system("pause");
                     continue;
                 }
@@ -557,13 +580,13 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter age: ";
+                cout << "\n\n\t\t\t\tEnter age: ";
                 cin >> age;
 
                 if (age<16)
                 {
-                    cout << "\n\nPlease Enter Correct Age" << endl;
-                    cout << "[1] Your age Should be atleast 16 years" << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Age" << endl;
+                    cout << "\t\t\t\t[1] Your age Should be atleast 16 years" << endl;
                     system("pause");
                     continue;
                 }
@@ -573,25 +596,25 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                 }
             }
             
-            cout << "\n\n\t\t\t\t\t\t\tSelect the courses you want to register";
+            cout << "\n\n\t\t\t\t\tSelect the courses you want to register";
             do
             {
                 system("cls");
                 int choice2;
-                cout << "\n\t\t\t\t\t [01] Computing Fundamentals (CF)";
-                cout << "\n\t\t\t\t\t [02] Computer Programming (CP)";
-                cout << "\n\t\t\t\t\t [03] Applied Physics (AP)";
-                cout << "\n\t\t\t\t\t [04] Object-Oriented Programming (OOP)";
-                cout << "\n\t\t\t\t\t [05] Data Structures & Algorithms (DSA)";
-                cout << "\n\t\t\t\t\t [06] Computer Architecture and Logic Design (CALD)";
-                cout << "\n\t\t\t\t\t [07] Operating Systems (OS)";
-                cout << "\n\t\t\t\t\t [08] Database Management System (DMS)";
-                cout << "\n\t\t\t\t\t [09] Software Design & Architecture (SDA)";
-                cout << "\n\t\t\t\t\t [10] Computer Communication & Networks (CCN)";
-                cout << "\n\t\t\t\t\t [11] Software Construction (SC)";
-                cout << "\n\t\t\t\t\t [12] Cloud Computing (CC)";
-                cout << "\n\t\t\t\t\t [13] Numerical Analysis (NA)";
-                cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+                cout << "\n\t\t\t [01] Computing Fundamentals (CF)";
+                cout << "\n\t\t\t [02] Computer Programming (CP)";
+                cout << "\n\t\t\t [03] Applied Physics (AP)";
+                cout << "\n\t\t\t [04] Object-Oriented Programming (OOP)";
+                cout << "\n\t\t\t [05] Data Structures & Algorithms (DSA)";
+                cout << "\n\t\t\t [06] Computer Architecture and Logic Design (CALD)";
+                cout << "\n\t\t\t [07] Operating Systems (OS)";
+                cout << "\n\t\t\t [08] Database Management System (DMS)";
+                cout << "\n\t\t\t [09] Software Design & Architecture (SDA)";
+                cout << "\n\t\t\t [10] Computer Communication & Networks (CCN)";
+                cout << "\n\t\t\t [11] Software Construction (SC)";
+                cout << "\n\t\t\t [12] Cloud Computing (CC)";
+                cout << "\n\t\t\t [13] Numerical Analysis (NA)";
+                cout << "\n\n\t\t\tEnter choice : ";
                 cin >> choice2;
                 switch (choice2)
                 {
@@ -674,8 +697,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     file.close();
                     break;
                 }
-                cout << "\n\n\t\t\t\t\t\t\tDo you want to register for another course\n\t\t\t\t\t [y/Y] Yes\n\t\t\t\t\t [n/N] No\n";
-                cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+                cout << "\n\n\t\t\t\t\tDo you want to register for another course";
+                cout << "\n\t\t\t [y/Y] Yes";
+                cout << "\n\t\t\t [n/N] No\n";
+                cout << "\n\n\t\t\t\tEnter choice : ";
                 cin >> ch;
                 course = course + "|" + course1;
             } while (ch == 'y' || ch == 'Y');
@@ -691,7 +716,9 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             file.open("Student.txt", ios::app);
             file << "\n" << enrollment << "|" << studentName << "|" << fatherName << "|" << gender << "|" << age << "|" << phoneNumber << "|" << email << course;
             file.close();
-            cout << "\n\n\t\t\t\t\t\t\tDo you want to register another student\n\t\t\t\t\t [y/Y] Yes\n\t\t\t\t\t [n/N] No\n";
+            cout << "\n\n\t\t\t\t\tDo you want to register another student"; 
+            cout << "\n\t\t\t [y/Y] Yes";
+            cout<< "\n\t\t\t [n/N] No\n";
             cout << "\n\n\t\t\t\t\t\tEnter choice : ";
             cin >> ch;
         } while (ch == 'y' || ch == 'Y');
@@ -700,25 +727,25 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         do
         {
             system("cls");
-            cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-            cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-            cout << "\t\t\t\t\t******************************************************************************\n\n";
-            cout << "\t\t\t\t\t\t\t\t    **********************   \n";
-            cout << "\t\t\t\t\t\t\t\t    <<<<<Registration>>>>>    \n";
-            cout << "\t\t\t\t\t\t\t\t    **********************   \n";
+            cout << "\n\t\t\t******************************************************************************\n\n";
+            cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+            cout << "\t\t\t******************************************************************************\n\n";
+            cout << "\t\t\t\t\t\t    **********************   \n";
+            cout << "\t\t\t\t\t\t      << Registration >>    \n";
+            cout << "\t\t\t\t\t\t    **********************   \n";
             courseT = "";
             cin.ignore();
-            cout << "\n\n\t\t\t\t\t\t\tEnter detail of teacher " << endl << endl;
+            cout << "\n\n\t\t\t\t\tEnter detail of teacher " << endl << endl;
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Teacher Name: ";
+                cout << "\n\n\t\t\t\tEnter Teacher Name: ";
                 getline(cin, teacherName);
 
                 if (teacherName.length() < 4)
                 {
-                    cout << "\n\nPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your name Should be atleast 4 character..." << endl;
-                    cout << "[2] You should Enter Full Name..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
+                    cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
                     system("pause");
                     continue;
                 }
@@ -730,14 +757,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             bool flag=false;
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Teacher ID: ";
+                cout << "\n\n\t\t\t\tEnter Teacher ID: ";
                 getline(cin, id);
 
                 if (id.length() < 6)
                 {
-                    cout << "\n\nPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your ID Should be atleast 5 Digits..." << endl;
-                    cout << "[2] Your ID may Contain Digits, Letter..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
+                    cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
                     system("pause");
                     continue;
                 }
@@ -747,10 +774,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     {
                         if (id[i] == '&' || id[i] == '*' || id[i] == '$' || id[i] == '%' || id[i] == '#' || id[i] == '@' || id[i] == '!' || id[i] == '(' || id[i] == ')' || id[i] == ':' || id[i] == '|' || id[i] == '/' || id[i] == ';' || id[i] == ',' || id[i] == '"' || id[i] == '+' || id[i] == '.')
                         {
-                            cout << "\n\nPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
-                            cout << "[1] Your ID Should be atleast 5 Digits..." << endl;
-                            cout << "[2] Your ID may Contain Digits, Letter..." << endl;
-                            cout << "[3] Your ID Should Not Contain Spacial Symbole..." << endl;
+                            cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
+                            cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
+                            cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
+                            cout << "\t\t\t\t[3] Your ID Should Not Contain Spacial Symbole..." << endl;
                             flag = true;
                         }
                     }
@@ -770,7 +797,7 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             //password = encrypted(password);
             while (true)
             {
-                cout << "\n\n\t\t\t\t\t\tEnter Teacher Password: ";
+                cout << "\n\n\t\t\t\tEnter Teacher Password: ";
                 char cha;
                 for (int i = 0; i >= 0;)
                 {
@@ -797,9 +824,9 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (id.length() < 6)
                 {
-                    cout << "\n\nPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
-                    cout << "[1] Your ID Should be atleast 5 Digits..." << endl;
-                    cout << "[2] Your ID may Contain Digits, Letter..." << endl;
+                    cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
+                    cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
+                    cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
                     system("pause");
                     continue;
                 }
@@ -814,19 +841,19 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             {
                 system("cls");
                 int choice3;
-                cout << "\n\t\t\t\t\t [01] Computing Fundamentals (CF)";
-                cout << "\n\t\t\t\t\t [02] Computer Programming (CP)";
-                cout << "\n\t\t\t\t\t [03] Applied Physics (AP)";
-                cout << "\n\t\t\t\t\t [04] Object-Oriented Programming (OOP)";
-                cout << "\n\t\t\t\t\t [05] Data Structures & Algorithms (DSA)";
-                cout << "\n\t\t\t\t\t [06] Computer Architecture and Logic Design (CALD)";
-                cout << "\n\t\t\t\t\t [07] Operating Systems (OS)";
-                cout << "\n\t\t\t\t\t [08] Database Management System (DMS)";
-                cout << "\n\t\t\t\t\t [09] Software Design & Architecture (SDA)";
-                cout << "\n\t\t\t\t\t [10] Computer Communication & Networks (CCN)";
-                cout << "\n\t\t\t\t\t [11] Software Construction (SC)";
-                cout << "\n\t\t\t\t\t [12] Cloud Computing (CC)";
-                cout << "\n\t\t\t\t\t [13] Numerical Analysis (NA)";
+                cout << "\n\t\t\t [01] Computing Fundamentals (CF)";
+                cout << "\n\t\t\t [02] Computer Programming (CP)";
+                cout << "\n\t\t\t [03] Applied Physics (AP)";
+                cout << "\n\t\t\t [04] Object-Oriented Programming (OOP)";
+                cout << "\n\t\t\t [05] Data Structures & Algorithms (DSA)";
+                cout << "\n\t\t\t [06] Computer Architecture and Logic Design (CALD)";
+                cout << "\n\t\t\t [07] Operating Systems (OS)";
+                cout << "\n\t\t\t [08] Database Management System (DMS)";
+                cout << "\n\t\t\t [09] Software Design & Architecture (SDA)";
+                cout << "\n\t\t\t [10] Computer Communication & Networks (CCN)";
+                cout << "\n\t\t\t [11] Software Construction (SC)";
+                cout << "\n\t\t\t [12] Cloud Computing (CC)";
+                cout << "\n\t\t\t [13] Numerical Analysis (NA)";
 
                 cout << "\n\n\t\t\t\t\t\tEnter choice : ";
                 cin >> choice3;
@@ -872,8 +899,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     courseT1 = "NA";
                     break;
                 }
-                cout << "\n\n\t\t\t\t\t\t\tDo you want to register for another course\n\t\t\t\t\t [y/Y] Yes\n\t\t\t\t\t [n/N] No\n";
-                cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+                cout << "\n\n\t\t\t\t\tDo you want to register for another course";
+                cout << "\n\t\t\t [y/Y] Yes";
+                cout<< "\n\t\t\t [n/N] No\n";
+                cout << "\n\n\t\tEnter choice : ";
                 cin >> ch;
                 courseT = courseT + "|" + courseT1;
             } while (ch == 'y' || ch == 'Y');
@@ -882,8 +911,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             file.open("Teacher.txt", ios::app);
             file << "\n" << teacherName << "|" << id << "|" << password << courseT;
             file.close();
-            cout << "\n\n\t\t\t\t\t\t\tDo you want to register another Teacher\n\t\t\t\t\t [y/Y] Yes\n\t\t\t\t\t [n/N] No\n";
-            cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+            cout << "\n\n\t\t\t\t\tDo you want to register another Teacher"; 
+            cout << "\n\t\t\t [y/Y] Yes";
+            cout<< "\n\t\t\t [n/N] No\n";
+            cout << "\n\n\t\t\t\tEnter choice : ";
             cin >> ch;
         } while (ch == 'y' || ch == 'Y');
         break;
@@ -892,7 +923,7 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         Admin(studentList, teacherList);
         break;
     default:
-        cout << "\n\t\t\tInvalid input. Try again." << endl;
+        cout << "\n\t\tInvalid input. Try again." << endl;
         break;
     }
     system("cls");
@@ -902,31 +933,33 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Admin Panel>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     ifstream file;
     int choice;
     string studentName = "", fatherName = "", email = "", phoneNumber = "", gender = "", course = "", enrollment = "", data = "";
     int age = 0;
     string teacherName = "", id = "", password = "", courseT = "", data2 = "";
-    cout << "\n\t\t\t\t\t [1] Student Detail\n\t\t\t\t\t [2] Teacher Detail\n\t\t\t\t\t [0] Exit";
-    cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+    cout << "\n\t\t\t [1] Student Detail";
+    cout << "\n\t\t\t [2] Teacher Detail";
+    cout<< "\n\t\t\t [0] Exit";
+    cout << "\n\n\t\t\tEnter choice : ";
     cin >> choice;
     switch (choice)
     {
     case 1:
         system("cls");
-        cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-        cout << "\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-        cout << "\t\t\t\t\t\t\t\t    <<<<<Student List>>>>>    \n";
-        cout << "\t\t\t\t\t\t\t\t    *********************    \n";
-        cout << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(15) << "Gender" << setw(15) << "Age" << setw(20) << "Phone Number" << setw(22) << "Email" << setw(22) << "Course" << endl;
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t\t\t     << Student List >>    \n";
+        cout << "\t\t\t\t\t\t    *********************    \n";
+        cout << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(15) << "Gender" << setw(15) << "Age" << setw(20) << "Phone Number" << setw(22) << "Email" << setw(40) << "Course" << endl;
         file.open("Student.txt");
         getline(file, data);
         while (!file.eof())
@@ -940,7 +973,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, phoneNumber, '|');
             getline(file, email, '|');
             getline(file, course);
-            cout << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(11) << gender << setw(16) << age << setw(20) << phoneNumber << setw(30) << email << setw(15) << course;
+            cout << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(11) << gender << setw(16) << age << setw(20) << phoneNumber << setw(30) << email << setw(40) << course;
             cout << endl;
         }
         file.close();
@@ -948,13 +981,13 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         break;
     case 2:
         system("cls");
-        cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-        cout << "\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-        cout << "\t\t\t\t\t\t\t\t    <<<<<Teacher List>>>>>    \n";
-        cout << "\t\t\t\t\t\t\t\t    *********************    \n";
-        cout << "\t\t\t\t\t" << "Name" << setw(30) << "ID" << setw(30) << "Password" << setw(20) << "Course" << endl;
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t     << Teacher List >>    \n";
+        cout << "\t\t\t\t    *********************    \n";
+        cout << "\t\t\t" << "Name" << setw(30) << "ID" << setw(30) << "Password" << setw(30) << "Course" << endl;
         file.open("Teacher.txt");
         getline(file, data2);
         while (!file.eof())
@@ -963,7 +996,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, id, '|');
             getline(file, password, '|');
             getline(file, courseT);
-            cout << "\t\t\t\t\t" << teacherName << setw(30) << id << setw(25) << password << setw(20) << courseT;
+            cout << "\t\t\t" << teacherName << setw(30) << id << setw(25) << password << setw(30) << courseT;
             cout << endl;
         }
         file.close();
@@ -974,7 +1007,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         Admin(studentList, teacherList);
         break;
     default:
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+        cout << "\n\n\n\t\t\t\t\t\t  Invalid input. Try again." << endl;
         break;
     }
     system("cls");
@@ -983,94 +1016,110 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
 
 void teacherLogin()
 {
-    system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Teacher Login>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
-    ifstream file;
-    bool check = true;
-    string data, iD = "", id = "", pass = "", password = "", course;
-    cin.ignore();
-    cout << "\n\t\t\t\t\t Enter ID: ";
-    getline(cin, iD);
-    cout << "\n\t\t\t\t\t Enter password: ";
-    char cha;
-    for (int i = 0; i >= 0;)
+    char choice = 'y';
+    while (choice == 'y' || choice == 'Y')
     {
-        cha = _getch();
-        if (cha != 13 && cha != 8)
+        system("cls");
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    ***********************    \n";
+        cout << "\t\t\t\t\t\t      << Teacher Login >>    \n";
+        cout << "\t\t\t\t\t\t    ***********************    \n";
+        ifstream file;
+        bool check = true;
+        string data, iD = "", id = "", pass = "", password = "", course;
+        cin.ignore();
+        cout << "\n\t\t\t Enter ID: ";
+        getline(cin, iD);
+        cout << "\n\t\t\t Enter password: ";
+        char cha;
+        for (int i = 0; i >= 0;)
         {
-            pass.push_back(cha);
-            cout << '*';
-            i++;
-        }
-        else if (cha == 8) // if backspace is presssed
-        {
-            if (i != 0)
+            cha = _getch();
+            if (cha != 13 && cha != 8)
             {
-                cout << "\b \b"; // moves cursor to the left print <space> again move cursor to left
-                i--;
+                pass.push_back(cha);
+                cout << '*';
+                i++;
+            }
+            else if (cha == 8) // if backspace is presssed
+            {
+                if (i != 0)
+                {
+                    cout << "\b \b"; // moves cursor to the left print <space> again move cursor to left
+                    i--;
+                }
+            }
+            else if (cha == 13)
+            {
+                break;         // for end of string
             }
         }
-        else if (cha == 13)
-        {
-            break;         // for end of string
-        }
-    }
 
-    file.open("Teacher.txt", ios::app);
-    getline(file, data);
-    int i = 0;
-    while (!file.eof())
-    {
-        getline(file, data, '|');
-        getline(file, id, '|');
-        getline(file, password, '|');
-        getline(file, course);
-        password = decrypted(password);
-        if (pass == password && iD == id)
+        file.open("Teacher.txt", ios::app);
+        getline(file, data);
+        int i = 0;
+        while (!file.eof())
         {
-            check = true;
-            break;
+            getline(file, data, '|');
+            getline(file, id, '|');
+            getline(file, password, '|');
+            getline(file, course);
+            //password = decrypted(password);
+            if (pass == password && iD == id)
+            {
+                check = true;
+                break;
+            }
+            else
+            {
+                check = false;
+            }
+        }
+        file.close();
+        if (check == true)
+        {
+            cout << "\n\n\n\t\t\t\t\t\t  << login successfully >>\n";
+            cout << "\n\t\t\t";
+            system("pause");
+
+            teacherCourse(course);
         }
         else
         {
-            check = false;
+            while (true)
+            {
+                cout << "\n\n\n\t\t\t\t\t\t  ERROR!!!!!";
+                cout << "\n\n\n\t\t\t\t\t\t  <<< UNAUTHORIZED ACCESS !! >>>\n";
+
+                cout << "\t\t\tDo You Want To Try Again[Y/N]: ";
+                choice = _getche();
+
+                if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N')
+                    break;
+            }
+            if (choice == 'n' || choice == 'N')
+                main();
+           
         }
     }
-    file.close();
-    if (check == true)
-    {
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  <<<<<login successfully>>>>>\n";
-        system("pause");
-
-        teacherCourse(course);
-    }
-    else
-    {
-
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  ERROR!!!!!";
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  <<<<<<<<UNAUTHORIZED ACCESS !!>>>>>>>>\n";
-        teacherLogin();
-    }
+    
 }
 
 void teacherCourse(string str)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Teacher Panel>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    ***********************    \n";
+    cout << "\t\t\t\t\t\t       << Teacher Panel >>    \n";
+    cout << "\t\t\t\t\t\t    ***********************    \n";
     string hr = str;
     int size;
     int choice;
-    string course[3];
+    string course[8];
     string deli = "|";
     int i = 0;
     int start = 0;
@@ -1084,14 +1133,39 @@ void teacherCourse(string str)
     }
     for (int j = 0; j <= i; j++)
     {
-        cout << "\n\t\t\t\t\t [" << j + 1 << "] " << course[j];
+        if(course[j]=="CF")
+            cout << "\n\t\t\t [" << j + 1 << "] "<<" Computer Fundamental";
+        else if (course[j] == "CP")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Computer Programing";
+        else if (course[j] == "AP")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Applied Physics";
+        else if (course[j] == "OOP")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Object-Oriented Programming";
+        else if (course[j] == "DSA")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Data Structures & Algorithms";
+        else if (course[j] == "CALD")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Computer Architecture and Logic Design";
+        else if (course[j] == "OS")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Operating Systems";
+        else if (course[j] == "DMS")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Database Management System";
+        else if (course[j] == "SDA")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Software Design & Architecture";
+        else if (course[j] == "CCN")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Computer Communication & Networks";
+        else if (course[j] == "SC")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Software Construction";
+        else if (course[j] == "CC")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Cloud Computing";
+        else if (course[j] == "NA")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Numerical Analysis";
         course[j] = course[j];
     }
     course[i] = str.substr(start, end - start);
     course[i] = course[i];
     cout << str.substr(start, end - start);
-    cout << "\n\t\t\t\t\t [0] Exit";
-    cout << "\n\n\t\t\t\t\t\t Enter your choice: ";
+    cout << "\n\t\t\t [0]  Exit";
+    cout << "\n\n\t\t\t\t Enter your choice: ";
     cin >> choice;
     size = i + 1;
     if (size == 1)
@@ -1151,6 +1225,161 @@ void teacherCourse(string str)
             break;
         }
     }
+    else if (size == 4)
+    {
+        switch (choice)
+        {
+        case 1:
+            teacherLab(str, course[0]);
+            break;
+        case 2:
+            teacherLab(str, course[1]);
+            break;
+        case 3:
+            teacherLab(str, course[2]);
+            break;
+        case 4:
+            teacherLab(str, course[3]);
+            break;
+        case 0:
+
+            main();
+            break;
+        default:
+            cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            break;
+        }
+    }
+    else if (size == 5)
+    {
+        switch (choice)
+        {
+        case 1:
+            teacherLab(str, course[0]);
+            break;
+        case 2:
+            teacherLab(str, course[1]);
+            break;
+        case 3:
+            teacherLab(str, course[2]);
+            break;
+        case 4:
+            teacherLab(str, course[3]);
+            break;
+        case 5:
+            teacherLab(str, course[4]);
+            break;
+        case 0:
+
+            main();
+            break;
+        default:
+            cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            break;
+        }
+    }
+    else if (size == 6)
+    {
+        switch (choice)
+        {
+        case 1:
+            teacherLab(str, course[0]);
+            break;
+        case 2:
+            teacherLab(str, course[1]);
+            break;
+        case 3:
+            teacherLab(str, course[2]);
+            break;
+        case 4:
+            teacherLab(str, course[3]);
+            break;
+        case 5:
+            teacherLab(str, course[4]);
+            break;
+        case 6:
+            teacherLab(str, course[5]);
+            break;
+        case 0:
+
+            main();
+            break;
+        default:
+            cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            break;
+        }
+    }
+    else if (size == 7)
+    {
+        switch (choice)
+        {
+        case 1:
+            teacherLab(str, course[0]);
+            break;
+        case 2:
+            teacherLab(str, course[1]);
+            break;
+        case 3:
+            teacherLab(str, course[2]);
+            break;
+        case 4:
+            teacherLab(str, course[3]);
+            break;
+        case 5:
+            teacherLab(str, course[4]);
+            break;
+        case 6:
+            teacherLab(str, course[5]);
+            break;
+        case 7:
+            teacherLab(str, course[6]);
+            break;
+        case 0:
+
+            main();
+            break;
+        default:
+            cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            break;
+        }
+    }
+    else if (size == 8)
+    {
+        switch (choice)
+        {
+        case 1:
+            teacherLab(str, course[0]);
+            break;
+        case 2:
+            teacherLab(str, course[1]);
+            break;
+        case 3:
+            teacherLab(str, course[2]);
+            break;
+        case 4:
+            teacherLab(str, course[3]);
+            break;
+        case 5:
+            teacherLab(str, course[4]);
+            break;
+        case 6:
+            teacherLab(str, course[5]);
+            break;
+        case 7:
+            teacherLab(str, course[6]);
+            break;
+        case 8:
+            teacherLab(str, course[7]);
+            break;
+        case 0:
+
+            main();
+            break;
+        default:
+            cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            break;
+        }
+    }
     else
     {
         cout << "\n\n\n\t\t\t\t\t\t\t\t  Error!!!!!!!!!";
@@ -1163,15 +1392,15 @@ void teacherCourse(string str)
 void teacherLab(string str, string course)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Teacher Panel>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    ***********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    ***********************    \n";
+    cout << "\t\t\t\t\t\t    <<<<<Teacher Panel>>>>>    \n";
+    cout << "\t\t\t\t\t\t    ***********************    \n";
     int choice;
-    cout << "\n\t\t\t\t\t [1] Create Lab\n\t\t\t\t\t [2] View Lab\n\t\t\t\t\t [3] Edit Lab\n\t\t\t\t\t [4] View Result\n\t\t\t\t\t [0] Exit\n";
-    cout << "\n\n\t\t\t\t\t\t Enter your choice: ";
+    cout << "\n\t\t\t [1] Create Lab\n\t\t\t [2] View Lab\n\t\t\t [3] Edit Lab\n\t\t\t [4] View Result\n\t\t\t [0] Exit\n";
+    cout << "\n\n\t\t\t\t Enter your choice: ";
     cin >> choice;
     string data, Course;
     ifstream file;
