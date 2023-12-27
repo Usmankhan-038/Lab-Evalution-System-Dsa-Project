@@ -1878,16 +1878,35 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
 
 Lab updation(Lab& obj)
 {
-    float new_rubric1, new_rubric2, new_rubric3, new_rubric4;
+    char rubric1, rubric2, rubric3, rubric4;
+    int new_rubric1, new_rubric2, new_rubric3, new_rubric4;
+    while (true)
+    {
+        cout << "\n\n\t\t\trubrics1\t\trubrics2\t\trubrics3\t\trubrics4 \n";
+        cout << "\t\t\t";
+        rubric1 = _getche();
+        cout << "\t\t\t ";
+        rubric2 = _getche();
+        cout << "\t\t\t ";
+        rubric3 = _getche();
+        cout << "\t\t\t ";
+        rubric4 = _getche();
 
-    cout << "\n\n\t\t\t\t\t\trubrics1\t\t\t\trubrics2\t\t\t\trubrics3\t\t\t\trubrics4 ";
-    cin >> new_rubric1>> new_rubric2>> new_rubric3>> new_rubric4;
-    /*cout << "\n\n\t\t\t\trubrics2: ";
-    cin >> new_rubric2;
-    cout << "\n\n\t\t\t\t\t\tEnter new rubrics3 : ";
-    cin >> new_rubric3;
-    cout << "\n\n\t\t\t\t\t\tEnter new rubrics4 : ";
-    cin >> new_rubric4;*/
+        new_rubric1 = rubric1 - '0';
+        new_rubric2 = rubric2 - '0';
+        new_rubric3 = rubric3 - '0';
+        new_rubric4 = rubric4 - '0';
+
+        if (new_rubric1 <= 5 || new_rubric2 <= 5 || new_rubric3 <= 5 || new_rubric4 <= 5)
+            break;
+        else
+        {
+            cout << "\n\n\t\t\tYour Marks Should be 5 or Less then 5\n";
+            cout << "\t\t\t";
+            system("pause");
+        }
+    }
+    
     float new_total = new_rubric1 + new_rubric2 + new_rubric3 + new_rubric4;
     obj.setRubOne(new_rubric1);
     obj.setRubSec(new_rubric2);
@@ -1904,7 +1923,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
     cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Result list>>>>>    \n";
+    cout << "\t\t\t\t\t\t\t\t      << Result list >>    \n";
     cout << "\t\t\t\t\t\t\t\t    *********************    \n";
     List<Lab> labResultList, list;
     string studentName, enrollment, labNo, labName, labType, data;
