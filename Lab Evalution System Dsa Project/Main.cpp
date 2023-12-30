@@ -1896,12 +1896,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
                 obj1[i] = updation(obj1[i]);
                 labList.insertAtStart(obj1[i]);
+                break;
             }
             else if (i > 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
                 obj1[i] = updation(obj1[i]);
                 labList.insertAtMiddle(obj1[i - 1], obj1[i]);
+                break;
             }
             else
             {
@@ -2076,23 +2078,61 @@ void calculateResult(string s1, string course, int numberOfStudent)
     file.close();
     Node<Lab>* start1 = list.getStart();
     Node<Lab>* start2 = labResultList.getStart();
-    cout << "\n\t\t\t" << "Enrollment\tName\tLab#1\tLab#2\tLab#3\tLab#4\tLab#5\tLab#6\tLab#7\tMid\tLab#8\tLab#9\tLab#10\tLab#11\tLab#12\tLab#13\tLab#14\tProject\tResult";
+    int size=0;
+    bool midFlag = false;
+    bool projectFalg = false;
+    for (Node<Lab>* ptr1 = start1; ptr1 != NULL; ptr1 = ptr1->next)
+    {
+        for (Node<Lab>* ptr2 = start2; ptr2 != NULL; ptr2 = ptr2->next)
+        {
+            obj1 = ptr2->info;
+            if (obj.getEnrollment() == obj1.getEnrollment())
+            {
+                obj1 = ptr2->info;
+                if (obj.getEnrollment() == obj1.getEnrollment())
+                {
+                    if (obj1.getResult() > 4 && obj1.getResult() <= 12)
+                    {
+                        midFlag = true;
+                    }
+                    else if (obj1.getResult() > 12 && obj1.getResult() <= 30)
+                        projectFalg = true;
+                    
+                }
+                size++;
+            }
+        }
+        break;
+        
+    }
+    cout << "\n\t\t\t" << "Enrollment\tName\t";
+    for (int i = 0; i < size; ++i)
+    {
+        if (midFlag)
+            cout << "Mid\t";
+        else if (projectFalg)
+            cout << "Project\t";
+        else
+            cout << "Lab# " << i + 1 << "\t";
+    }
+    cout << "Result";
     for (Node<Lab>* ptr1 = start1; ptr1 != NULL; ptr1 = ptr1->next)
     {
         obj = ptr1->info;
-        cout << "\n\t\t\t" << obj.getEnrollment() << "|" << obj.getStudentName();
+        cout << "\n\t\t\t" << obj.getEnrollment() << "\t" << obj.getStudentName();
         total = 0;
         for (Node<Lab>* ptr2 = start2; ptr2 != NULL; ptr2 = ptr2->next)
         {
             obj1 = ptr2->info;
             if (obj.getEnrollment() == obj1.getEnrollment())
             {
-                cout << "|" << obj1.getResult();
+                cout << "\t" << obj1.getResult();
                 total += obj1.getResult();
             }
         }
-        cout << "|" << total;
+        cout << "\t" << total;
     }
+    cout << "\n\t\t\t";
     system("pause");
     teacherLab(s1, course);
 }
