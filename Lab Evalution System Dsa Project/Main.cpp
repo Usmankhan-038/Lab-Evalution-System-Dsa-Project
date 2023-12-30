@@ -1058,7 +1058,6 @@ void teacherLogin()
         }
 
         file.open("Teacher.txt", ios::app);
-        getline(file, data);
         int i = 0;
         while (!file.eof())
         {
@@ -1096,6 +1095,7 @@ void teacherLogin()
                 cout << "\t\t\tDo You Want To Try Again[Y/N]: ";
                 choice = _getche();
 
+
                 if (choice == 'y' || choice == 'Y' || choice == 'n' || choice == 'N')
                     break;
             }
@@ -1131,10 +1131,13 @@ void teacherCourse(string str)
         end = str.find(deli, start);
         i++;
     }
+   
+    course[i] = str.substr(start, end - start);
+    course[i] = course[i];
     for (int j = 0; j <= i; j++)
     {
-        if(course[j]=="CF")
-            cout << "\n\t\t\t [" << j + 1 << "] "<<" Computer Fundamental";
+        if (course[j] == "CF")
+            cout << "\n\t\t\t [" << j + 1 << "] " << " Computer Fundamental";
         else if (course[j] == "CP")
             cout << "\n\t\t\t [" << j + 1 << "] " << " Computer Programing";
         else if (course[j] == "AP")
@@ -1161,9 +1164,7 @@ void teacherCourse(string str)
             cout << "\n\t\t\t [" << j + 1 << "] " << " Numerical Analysis";
         course[j] = course[j];
     }
-    course[i] = str.substr(start, end - start);
-    course[i] = course[i];
-    cout << str.substr(start, end - start);
+    //cout << str.substr(start, end - start);
     cout << "\n\t\t\t [0]  Exit";
     cout << "\n\n\t\t\t\t Enter your choice: ";
     cin >> choice;
@@ -1396,10 +1397,14 @@ void teacherLab(string str, string course)
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
-    cout << "\t\t\t\t\t\t    <<<<<Teacher Panel>>>>>    \n";
+    cout << "\t\t\t\t\t\t       << Teacher Panel >>    \n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
     int choice;
-    cout << "\n\t\t\t [1] Create Lab\n\t\t\t [2] View Lab\n\t\t\t [3] Edit Lab\n\t\t\t [4] View Result\n\t\t\t [0] Exit\n";
+    cout << "\n\t\t\t [1] Create Lab";
+    cout << "\n\t\t\t [2] View Lab";
+    cout << "\n\t\t\t [3] Edit Lab";
+    cout << "\n\t\t\t [4] View Result";
+    cout<< "\n\t\t\t [0] Exit\n";
     cout << "\n\n\t\t\t\t Enter your choice: ";
     cin >> choice;
     string data, Course;
@@ -1444,7 +1449,7 @@ void teacherLab(string str, string course)
         teacherCourse(str);
         break;
     default:
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+        cout << "\n\n\n\t\t\t\t\t\t  Invalid input. Try again." << endl;
         break;
     }
     teacherLab(str, course);
@@ -1453,18 +1458,18 @@ void teacherLab(string str, string course)
 void viewLab(string s1, string course, int numberOfStudent)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    ********************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Lab Detail>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    ********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    ********************    \n";
+    cout << "\t\t\t\t\t\t       << Lab Detail >>    \n";
+    cout << "\t\t\t\t\t\t    ********************    \n";
     string labNo, labTopic, labType, date, remarks, data;
     fstream file;
     string courseLab;
     courseLab = course + " Lab.txt";
-    cout << "\n\n\t\t\t\t\t\t\tDisplaying detial of " << course << " lab\n\n";
-    cout << "\n\t\t\t\t\t" << "Lab No\t\tLab Topic\t\tLab Type\t\tDate\t\tRemark\n";
+    cout << "\n\n\t\t\tDisplaying detial of " << course << " lab\n\n";
+    cout << "\n\t\t"<<setw(10) << "Lab No" << setw(30) << "Lab Topic" << setw(30) << "Lab Type" << setw(30) << "Date" << setw(30) << "Remark\n";
     int i;
     file.open(courseLab);
     getline(file, data);
@@ -1479,7 +1484,7 @@ void viewLab(string s1, string course, int numberOfStudent)
         {
             getline(file, data);
         }
-        cout << "\n\t\t\t\t\t" << labNo << "\t\t" << labTopic << "\t\t" << labType << "\t\t\t" << date << "\t\t" << remarks << endl;
+        cout << "\n\t\t"<< setw(10) << labNo << setw(30) << labTopic << setw(30) << labType << setw(30) << date << setw(30) << remarks << endl;
     }
     system("pause");
     teacherLab(s1, course);
@@ -1488,12 +1493,12 @@ void viewLab(string s1, string course, int numberOfStudent)
 void createLab(string course, string str)
 {
     system("cls");
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    ********************    \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Create Lab>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    ********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    ********************    \n";
+    cout << "\t\t\t\t\t\t      << Create Lab >>    \n";
+    cout << "\t\t\t\t\t\t    ********************    \n";
     int i, choice;
     List<Lab> labList[100];
     string enrollment, studentName, data;
@@ -1503,13 +1508,59 @@ void createLab(string course, string str)
     string labNo, labTopic, labType, date, remarks;
     Lab obj;
     cin.ignore();
-    cout << "\n\t\t\t\t\t Enter Lab Number: ";
-    getline(cin, labNo);
-    cout << "\n\t\t\t\t\t Enter Lab Topic: ";
-    getline(cin, labTopic);
-    cout << "\n\n\t\t\t\t\t Select Lab Type\n\t\t\t\t\t [1] Simple\n\t\t\t\t\t [2] OpenEnded\n\t\t\t\t\t [3] Mid\n\t\t\t\t\t [4] Project\n";
-    cout << "\n\t\t\t\t\t Enter choice: ";
-    cin >> choice;
+    while (true)
+    {
+        cout << "\n\t\t\t Enter Lab Number: ";
+        getline(cin, labNo);
+
+        if (!(isdigit(labNo[0])))
+        {
+            cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
+            cout << "\n\t\t\tYour lab No shoud be number..." << endl;
+            cout << "\n\t\t\t";
+            system("pause");
+            continue;
+        }
+        break;
+    }
+   
+   
+    while (true)
+    {
+        cout << "\n\t\t\t Enter Lab Topic: ";
+        getline(cin, labTopic);
+
+        if (labTopic.length()<4)
+        {
+            cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
+            cout << "\n\t\t\tYour lab Topic shoud be at least 4 character..." << endl;
+            cout << "\n\t\t\tif You Dont have Lab Topic Then Enter \"NILL\"..." << endl;
+            cout << "\n\t\t\t";
+
+            system("pause");
+            continue;
+        }
+        break;
+    }
+    while (true)
+    {
+        cout << "\n\n\t\t\t Select Lab Type\n\t\t\t [1] Simple\n\t\t\t [2] OpenEnded\n\t\t\t [3] Mid\n\t\t\t [4] Project\n";
+        cout << "\n\t\t\t Enter choice: ";
+        cin >> choice;
+
+        if (choice == 1 || choice == 2 || choice == 3 || choice == 4)
+        {
+            break;
+        }
+        else
+        {
+            cout << "Invalid Type" << endl;
+            cout << "\n\t\t\t";
+            system("pause");
+            continue;
+        }
+    }
+    
     switch (choice)
     {
     case 1:
@@ -1525,13 +1576,45 @@ void createLab(string course, string str)
         labType = "Project";
         break;
     default:
-        cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid Type";
+        cout << "\n\n\n\t\t\t\t\t  Invalid Type";
     }
     cin.ignore();
-    cout << "\n\t\t\t\t\t Enter Date: ";
-    getline(cin, date);
-    cout << "\n\t\t\t\t\t Enter Remarks: ";
-    getline(cin, remarks);
+   
+    while (true)
+    {
+        cout << "\n\t\t\t Enter Date: ";
+        getline(cin, date);
+
+        if (date.length() < 6)
+        {
+            cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
+            cout << "\n\t\t\tYour Date shoud be at least 6 character..." << endl;
+            cout << "\n\t\t\tYour Date should be \"day-monthe-year\"   (02-08-2023)..." << endl;
+            cout << "\n\t\t\t";
+
+            system("pause");
+            continue;
+        }
+        break;
+    }
+  
+    while (true)
+    {
+        cout << "\n\t\t\t Enter Remarks: ";
+        getline(cin, remarks);
+
+        if (labTopic.length() < 4)
+        {
+            cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
+            cout << "\n\t\t\tYour Remarks shoud be at least 4 character..." << endl;
+            cout << "\n\t\t\tif You Dont have Remarks Then Enter \"NILL\"..." << endl;
+            cout << "\n\t\t\t";
+
+            system("pause");
+            continue;
+        }
+        break;
+    }
     string courseLab, fileName;
     courseLab = course + " Lab.txt";
     fileName = course + ".txt";
@@ -1577,8 +1660,8 @@ void createLab(string course, string str)
             Node<Lab>* start = labList[j].getStart();
             do
             {
-                cout << "\n\t\t\t\t\t [1] Search By Name\n\t\t\t\t\t [2] Search By Enrollment\n";
-                cout << "\n\t\t\t\t\t Enter choice: ";
+                cout << "\n\t\t\t [1] Search By Name\n\t\t\t [2] Search By Enrollment\n";
+                cout << "\n\t\t\t Enter choice: ";
                 cin >> choice1;
                 switch (choice1)
                 {
@@ -1589,10 +1672,10 @@ void createLab(string course, string str)
                     searchStudentByEnrollment(start, labList[j]);
                     break;
                 default:
-                    cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid Choice";
+                    cout << "\n\n\n\t\t\t\t\t  Invalid Choice";
                 }
-                cout << "\n\t\t\t\t\t Do you want to mark another student\n\t\t\t\t\t [y/Y] Yes\n\t\t\t\t\t [n/N] No\n";
-                cout << "\n\t\t\t\t\t Enter choice: ";
+                cout << "\n\t\t\t Do you want to mark another student\n\t\t\t [y/Y] Yes\n\t\t\t [n/N] No\n";
+                cout << "\n\t\t\t Enter choice: ";
                 cin >> ch;
             } while (ch == 'y' || ch == 'Y');
 
@@ -1617,7 +1700,7 @@ void editlab(string s1, string course, int numberOfStudent)
     cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t\t\t    ******************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Edit Lab>>>>>    \n";
+    cout << "\t\t\t\t\t\t\t\t       << Edit Lab >>    \n";
     cout << "\t\t\t\t\t\t\t\t    ******************   \n";
     List<Lab> labList[100];
     string studentName, enrollment, labNo, labName, labType, data, date, remarks;
@@ -1737,14 +1820,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
     string str = {};
     string str2 = {};
     char ch;
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Searching>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t      << Searching >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     labList.traverse();
-    cout << "\n\n\t\t\t\t\tEnter Student to search: ";
+    cout << "\n\n\t\t\tEnter Student to search: ";
     ch = _getch();
     if (ch <= 90 && ch >= 65)
     {
@@ -1776,14 +1859,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
                 str2.push_back(ch);
             }
         }
-        cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-        cout << "\t\t\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-        cout << "\t\t\t\t\t\t\t\t    <<<<<Searching>>>>>    \n";
-        cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t\t\t       << Searching >>    \n";
+        cout << "\t\t\t\t\t\t    *********************    \n";
         labList.traverse();
-        cout << "\n\n\t\t\t\t\tEnter Student to search: ";
+        cout << "\n\n\t\t\tEnter Student to search: ";
         for (int i = 0; i < str.size(); i++)
         {
             if (str[i] != '{')
@@ -1822,7 +1905,7 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
             }
             else
             {
-                cout << "\n\n\t\t\t\t\t\t\t Error!!!";
+                cout << "\n\n\t\t\t\t\t Error!!!";
             }
         }
         i++;
@@ -1834,14 +1917,14 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
     string key;
     system("cls");
     char ch;
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t    <<<<<Searching>>>>>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t       << Searching >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     labList.traverse();
-    cout << "\n\n\t\t\t\t\tEnter Student to search: ";
+    cout << "\n\n\t\t\tEnter Student to search: ";
     cin.ignore();
     getline(cin, key);
     Lab obj1[100];
