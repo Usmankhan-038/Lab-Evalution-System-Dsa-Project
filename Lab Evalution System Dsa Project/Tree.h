@@ -69,7 +69,7 @@ private:
                     cout << " ";
                 }
                 else {
-                    cout << currPrefix[i];
+                    cout <<currPrefix[i];
                 }
             }
             cout << endl;

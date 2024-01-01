@@ -1559,9 +1559,16 @@ void viewLab(string s1, string course, int numberOfStudent)
     int i;
     file.open(courseLab);
     getline(file, data);
+    bool isEmpty = false;
     while (!file.eof())
     {
         getline(file, labNo);
+        if (labNo == "")
+        {
+            isEmpty = true;
+            break;
+        }
+           
         getline(file, labTopic);
         getline(file, labType);
         getline(file, date);
@@ -1572,6 +1579,8 @@ void viewLab(string s1, string course, int numberOfStudent)
         }
         cout << "\n\t\t"<< setw(10) << labNo << setw(30) << labTopic << setw(30) << labType << setw(30) << date << setw(30) << remarks << endl;
     }
+    if (isEmpty)
+        cout << "\n\t\tThere is No Lab Created....\n\t\t";
     system("pause");
     teacherLab(s1, course);
 }
@@ -1811,10 +1820,16 @@ void editlab(string s1, string course, int numberOfStudent)
     fileName = course + " Lab.txt";
     file.open(fileName);
     getline(file, data);
+    bool isEmpty = false;
     while (!file.eof())
     {
         i = 0;
         getline(file, labNo);
+        if (labNo == "")
+        {
+            isEmpty = true;
+            break;
+        }
         getline(file, labName);
         getline(file, labType);
         getline(file, date);
@@ -1856,6 +1871,12 @@ void editlab(string s1, string course, int numberOfStudent)
             labList[j].insertAtEnd(obj);
             i++;
         }
+    }
+    if (isEmpty)
+    {
+        cout << "\n\t\t\t\tThere is No Lab Created....\n\t\t\t\t";
+        system("pause");
+        teacherLab(s1, course);
     }
     file.clear();
     file.close();
