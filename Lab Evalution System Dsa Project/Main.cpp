@@ -10,7 +10,7 @@
 using namespace std;
 
 //Edited
-Trie trie;
+Tree tree;
 
 class Teacher
 {
@@ -1428,7 +1428,7 @@ void teacherLab(string str, string course)
                 data[i] = '{';
             }
         }
-        trie.insert(data);
+        tree.insert(data);
         numberOfStudent++;
     }
     switch (choice)
@@ -1877,7 +1877,7 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
         }
         cout << endl;
         cout << "\n\t\t\t\t\t----   Suggestions -----" << endl;
-        trie.printAutoSuggestions(str);
+        tree.printAutoSuggestions(str);
         ch = _getch();
         if (ch <= 90 && ch >= 65)
         {
@@ -1989,6 +1989,7 @@ Lab updation(Lab& obj)
             cout << "\n\n\t\t\tYour Marks Should be 5 or Less then 5\n";
             cout << "\t\t\t";
             system("pause");
+            continue;
         }
     }
     
