@@ -146,7 +146,8 @@ ItemType List <ItemType>::deleteAtStart()
 		start = start->next;
 		ItemType temp = p->info;
 		delete p;
-		start->pre = NULL;
+		if(start!=NULL)
+			start->pre = NULL;
 		return temp;
 	}
 

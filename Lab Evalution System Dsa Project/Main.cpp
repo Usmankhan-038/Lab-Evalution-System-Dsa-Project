@@ -3,12 +3,13 @@
 #include<iomanip>
 #include<Conio.h>
 #include<string.h>
+#include<windows.h>
 #include<string>
 #include"List.h"
 #include"Tree.h"
 
 using namespace std;
-
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 //Edited
 Tree tree;
 
@@ -274,17 +275,20 @@ int main()
     List<Lab> studentList;
     List<Teacher> teacherList;
     int choice;
+    SetConsoleTextAttribute(hConsole,3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                          Welcome to Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    *******************    \n";
     cout << "\t\t\t\t\t\t      << Main Menu >>    \n";
     cout << "\t\t\t\t\t\t    *******************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     cout << "\n\t\t\t[1] Administrative"; 
     cout << "\n\n\t\t\t[2] Teacher ";
     cout << "\n\n\t\t\t[0] Exit \n";
     cout << "\n\n\t\t\tEnter choice : ";
     cin >> choice;
+   
     switch (choice)
     {
     case 1:
@@ -305,6 +309,8 @@ int main()
 
 void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
 {
+    SetConsoleTextAttribute(hConsole, 3);
+
     char choice = 'y';
     while (choice == 'y' || choice == 'Y')
     {
@@ -315,6 +321,8 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t\t\t      << Admin Login >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
+        SetConsoleTextAttribute(hConsole, 3);
+
         string number = "usman123";
         string id = "usman@123";
         string iD;
@@ -358,6 +366,8 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
         {
             while (true)
             {
+                SetConsoleTextAttribute(hConsole, 4);
+                
                 cout << "\n\n\n\t\t\t\t\t\t\t\t  ERROR!!!!!";
                 cout << "\n\n\n\t\t\t\t\t\t  <<< UNAUTHORIZED ACCESS !! >>>\n";
                 cout << "\t\t\t\tDo You Want To Try Again[Y/N]: ";
@@ -368,7 +378,7 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
             }
             if (choice == 'n' || choice == 'N')
                 main();
-            
+            SetConsoleTextAttribute(hConsole, 6);
         }
     }
     
@@ -376,6 +386,7 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
 
 void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
 {
+    SetConsoleTextAttribute(hConsole, 3);
     char choice;
     while (true)
     {
@@ -387,6 +398,7 @@ void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
+        SetConsoleTextAttribute(hConsole, 6);
         cout << "\n\t\t\t[1] Registeration";
         cout << "\n\n\t\t\t[2] View Detail";
         cout << "\n\n\t\t\t[0] exit \n";
@@ -411,7 +423,9 @@ void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
         main();
         break;
     default:
+        SetConsoleTextAttribute(hConsole, 4);
         cout << "\n\t\t\tInvalid input. Try again." << endl;
+        SetConsoleTextAttribute(hConsole, 6);
         break;
     }
     
@@ -419,6 +433,7 @@ void Admin(List<Lab>& studentList, List<Teacher>& teacherList)
 
 void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 {
+    SetConsoleTextAttribute(hConsole, 3);
     system("cls");
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
@@ -426,6 +441,7 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
     cout << "\t\t\t\t\t\t    *********************   \n";
     cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
     cout << "\t\t\t\t\t\t    *********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     fstream file;
     int choice;
     Teacher obj1;
@@ -445,12 +461,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         do
         {
             system("cls");
+            SetConsoleTextAttribute(hConsole, 3);
             cout << "\n\t\t\t******************************************************************************\n\n";
             cout << "\t\t\t                           Lab Evaluation System                                \n\n";
             cout << "\t\t\t******************************************************************************\n\n";
             cout << "\t\t\t\t\t\t    **********************  \n";
             cout << "\t\t\t\t\t\t      << Registration >>    \n";
             cout << "\t\t\t\t\t\t    **********************   \n";
+            SetConsoleTextAttribute(hConsole, 6);
             course = "";
             file.open("Student.txt");
             if (file.is_open())
@@ -494,10 +512,12 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (studentName.length() < 4)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name."<<endl;
                     cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
                     cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
                     system("pause");
+                    SetConsoleTextAttribute(hConsole, 6);
                     continue;
                 }
                 else
@@ -512,9 +532,11 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (fatherName.length() < 4)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
                     cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -530,11 +552,13 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (email.length() < 13 || email.substr(email.length() - 10) != "@gmail.com")
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Email. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your Email Should be atleast 13 character..." << endl;
                     cout << "\t\t\t\t[2] You should Enter Authentic Email..." << endl;
                     cout << "\t\t\t\t[3] Your Email should Contain @gmail.com..." << endl;
                     cout << "\t\t\t\t[4] Example example@gmail.com" << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -550,9 +574,11 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (phoneNumber.length() < 11)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Phone. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your Phone Number Should be atleast 11 Digits..." << endl;
                     cout << "\t\t\t\t[2] You should Enter +92 OR 0 at the Start of Number..." << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -566,17 +592,28 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                 cout << "\n\n\t\t\t\tEnter Gender [M/F]: ";
                 getline(cin, gender);
 
-                if (gender!="M"|| gender != "m"|| gender != "f"|| gender != "F")
+                if (gender!="M"&& gender != "m"&& gender != "f"&& gender != "F")
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Gender" << endl;
                     cout << "\t\t\t\t[1] Your Gender Should be Male [M/m] Or Female [F/f]" << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
                 else
                 {
+                    if (gender == "M" || gender == "m")
+                    {
+                        gender = "Male";
+                    }
+                    else if (gender == "F" || gender == "F")
+                    {
+                        gender = "Female";
+                    }
                     break;
                 }
+                
             }
             while (true)
             {
@@ -585,8 +622,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (age<16)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Age" << endl;
                     cout << "\t\t\t\t[1] Your age Should be atleast 16 years" << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -697,10 +736,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     file.close();
                     break;
                 }
-                cout << "\n\n\t\t\t\t\tDo you want to register for another course";
+                cout << "\n\n\t\t\tDo you want to register for another course";
                 cout << "\n\t\t\t [y/Y] Yes";
                 cout << "\n\t\t\t [n/N] No\n";
-                cout << "\n\n\t\t\t\tEnter choice : ";
+                cout << "\n\n\t\t\tEnter choice : ";
                 cin >> ch;
                 course = course + "|" + course1;
             } while (ch == 'y' || ch == 'Y');
@@ -716,10 +755,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             file.open("Student.txt", ios::app);
             file << "\n" << enrollment << "|" << studentName << "|" << fatherName << "|" << gender << "|" << age << "|" << phoneNumber << "|" << email << course;
             file.close();
-            cout << "\n\n\t\t\t\t\tDo you want to register another student"; 
+            cout << "\n\n\t\t\tDo you want to register another student"; 
             cout << "\n\t\t\t [y/Y] Yes";
             cout<< "\n\t\t\t [n/N] No\n";
-            cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+            cout << "\n\n\t\t\tEnter choice : ";
             cin >> ch;
         } while (ch == 'y' || ch == 'Y');
         break;
@@ -727,12 +766,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         do
         {
             system("cls");
+            SetConsoleTextAttribute(hConsole, 3);
             cout << "\n\t\t\t******************************************************************************\n\n";
             cout << "\t\t\t                           Lab Evaluation System                                \n\n";
             cout << "\t\t\t******************************************************************************\n\n";
             cout << "\t\t\t\t\t\t    **********************   \n";
             cout << "\t\t\t\t\t\t      << Registration >>    \n";
             cout << "\t\t\t\t\t\t    **********************   \n";
+            SetConsoleTextAttribute(hConsole, 6);
             courseT = "";
             cin.ignore();
             cout << "\n\n\t\t\t\t\tEnter detail of teacher " << endl << endl;
@@ -743,9 +784,11 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (teacherName.length() < 4)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct Name. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your name Should be atleast 4 character..." << endl;
                     cout << "\t\t\t\t[2] You should Enter Full Name..." << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -762,9 +805,11 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (id.length() < 6)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
                     cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -774,10 +819,12 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     {
                         if (id[i] == '&' || id[i] == '*' || id[i] == '$' || id[i] == '%' || id[i] == '#' || id[i] == '@' || id[i] == '!' || id[i] == '(' || id[i] == ')' || id[i] == ':' || id[i] == '|' || id[i] == '/' || id[i] == ';' || id[i] == ',' || id[i] == '"' || id[i] == '+' || id[i] == '.')
                         {
+                            SetConsoleTextAttribute(hConsole, 4);
                             cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
                             cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
                             cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
                             cout << "\t\t\t\t[3] Your ID Should Not Contain Spacial Symbole..." << endl;
+                            SetConsoleTextAttribute(hConsole, 6);
                             flag = true;
                         }
                     }
@@ -824,9 +871,11 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 
                 if (id.length() < 6)
                 {
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\t\t\t\tPlease Enter Correct ID. There are Some Rules For Entering Name." << endl;
                     cout << "\t\t\t\t[1] Your ID Should be atleast 5 Digits..." << endl;
                     cout << "\t\t\t\t[2] Your ID may Contain Digits, Letter..." << endl;
+                    SetConsoleTextAttribute(hConsole, 6);
                     system("pause");
                     continue;
                 }
@@ -855,7 +904,7 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                 cout << "\n\t\t\t [12] Cloud Computing (CC)";
                 cout << "\n\t\t\t [13] Numerical Analysis (NA)";
 
-                cout << "\n\n\t\t\t\t\t\tEnter choice : ";
+                cout << "\n\n\t\t\tEnter choice : ";
                 cin >> choice3;
                 switch (choice3)
                 {
@@ -899,10 +948,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
                     courseT1 = "NA";
                     break;
                 }
-                cout << "\n\n\t\t\t\t\tDo you want to register for another course";
+                cout << "\n\n\t\t\tDo you want to register for another course";
                 cout << "\n\t\t\t [y/Y] Yes";
                 cout<< "\n\t\t\t [n/N] No\n";
-                cout << "\n\n\t\tEnter choice : ";
+                cout << "\n\n\t\t\tEnter choice : ";
                 cin >> ch;
                 courseT = courseT + "|" + courseT1;
             } while (ch == 'y' || ch == 'Y');
@@ -911,10 +960,10 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
             file.open("Teacher.txt", ios::app);
             file << "\n" << teacherName << "|" << id << "|" << password << courseT;
             file.close();
-            cout << "\n\n\t\t\t\t\tDo you want to register another Teacher"; 
+            cout << "\n\n\t\t\tDo you want to register another Teacher"; 
             cout << "\n\t\t\t [y/Y] Yes";
             cout<< "\n\t\t\t [n/N] No\n";
-            cout << "\n\n\t\t\t\tEnter choice : ";
+            cout << "\n\n\t\t\tEnter choice : ";
             cin >> ch;
         } while (ch == 'y' || ch == 'Y');
         break;
@@ -923,7 +972,9 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
         Admin(studentList, teacherList);
         break;
     default:
+        SetConsoleTextAttribute(hConsole, 4);
         cout << "\n\t\tInvalid input. Try again." << endl;
+        SetConsoleTextAttribute(hConsole, 6);
         break;
     }
     system("cls");
@@ -933,12 +984,14 @@ void getRegister(List<Lab>& studentList, List<Teacher>& teacherList)
 void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    *********************   \n";
     cout << "\t\t\t\t\t\t      << Admin Panel >>    \n";
     cout << "\t\t\t\t\t\t    *********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     ifstream file;
     int choice;
     string studentName = "", fatherName = "", email = "", phoneNumber = "", gender = "", course = "", enrollment = "", data = "";
@@ -953,12 +1006,14 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
     {
     case 1:
         system("cls");
+        SetConsoleTextAttribute(hConsole, 3);
         cout << "\n\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t                           Lab Evaluation System                                \n\n";
         cout << "\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t\t\t     << Student List >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
+        SetConsoleTextAttribute(hConsole, 6);
         cout << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(15) << "Gender" << setw(15) << "Age" << setw(20) << "Phone Number" << setw(22) << "Email" << setw(40) << "Course" << endl;
         file.open("Student.txt");
         getline(file, data);
@@ -973,7 +1028,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, phoneNumber, '|');
             getline(file, email, '|');
             getline(file, course);
-            cout << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(11) << gender << setw(16) << age << setw(20) << phoneNumber << setw(30) << email << setw(40) << course;
+            cout << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(15) << gender << setw(15) << age << setw(20) << phoneNumber << setw(22) << email << setw(40) << course;
             cout << endl;
         }
         file.close();
@@ -981,13 +1036,15 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         break;
     case 2:
         system("cls");
+        SetConsoleTextAttribute(hConsole, 3);
         cout << "\n\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t                           Lab Evaluation System                                \n\n";
         cout << "\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t     << Teacher List >>    \n";
         cout << "\t\t\t\t    *********************    \n";
-        cout << "\t\t\t" << "Name" << setw(30) << "ID" << setw(30) << "Password" << setw(30) << "Course" << endl;
+        SetConsoleTextAttribute(hConsole, 6);
+        cout << "\t\t\t" << "Name" << setw(30) << "ID" << setw(25) << "Password" << setw(30) << "Course" << endl;
         file.open("Teacher.txt");
         getline(file, data2);
         while (!file.eof())
@@ -1020,12 +1077,14 @@ void teacherLogin()
     while (choice == 'y' || choice == 'Y')
     {
         system("cls");
+        SetConsoleTextAttribute(hConsole, 3);
         cout << "\n\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t                           Lab Evaluation System                                \n\n";
         cout << "\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t\t\t\t    ***********************    \n";
         cout << "\t\t\t\t\t\t      << Teacher Login >>    \n";
         cout << "\t\t\t\t\t\t    ***********************    \n";
+        SetConsoleTextAttribute(hConsole, 6);
         ifstream file;
         bool check = true;
         string data, iD = "", id = "", pass = "", password = "", course;
@@ -1089,9 +1148,10 @@ void teacherLogin()
         {
             while (true)
             {
+                SetConsoleTextAttribute(hConsole, 4);
                 cout << "\n\n\n\t\t\t\t\t\t  ERROR!!!!!";
                 cout << "\n\n\n\t\t\t\t\t\t  <<< UNAUTHORIZED ACCESS !! >>>\n";
-
+                SetConsoleTextAttribute(hConsole, 6);
                 cout << "\t\t\tDo You Want To Try Again[Y/N]: ";
                 choice = _getche();
 
@@ -1110,12 +1170,14 @@ void teacherLogin()
 void teacherCourse(string str)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
     cout << "\t\t\t\t\t\t       << Teacher Panel >>    \n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     string hr = str;
     int size;
     int choice;
@@ -1181,7 +1243,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1200,7 +1264,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1222,7 +1288,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1247,7 +1315,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1275,7 +1345,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1306,7 +1378,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1340,7 +1414,9 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
@@ -1377,13 +1453,17 @@ void teacherCourse(string str)
             main();
             break;
         default:
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\n\t\t\t\t\t\t\t\t  Invalid input. Try again." << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             break;
         }
     }
     else
     {
+        SetConsoleTextAttribute(hConsole, 4);
         cout << "\n\n\n\t\t\t\t\t\t\t\t  Error!!!!!!!!!";
+        SetConsoleTextAttribute(hConsole, 6);
         system("pause");
     }
     teacherCourse(hr);
@@ -1393,12 +1473,14 @@ void teacherCourse(string str)
 void teacherLab(string str, string course)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
     cout << "\t\t\t\t\t\t       << Teacher Panel >>    \n";
     cout << "\t\t\t\t\t\t    ***********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     int choice;
     cout << "\n\t\t\t [1] Create Lab";
     cout << "\n\t\t\t [2] View Lab";
@@ -1449,7 +1531,9 @@ void teacherLab(string str, string course)
         teacherCourse(str);
         break;
     default:
+        SetConsoleTextAttribute(hConsole, 4);
         cout << "\n\n\n\t\t\t\t\t\t  Invalid input. Try again." << endl;
+        SetConsoleTextAttribute(hConsole, 6);
         break;
     }
     teacherLab(str, course);
@@ -1458,12 +1542,14 @@ void teacherLab(string str, string course)
 void viewLab(string s1, string course, int numberOfStudent)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    ********************    \n";
     cout << "\t\t\t\t\t\t       << Lab Detail >>    \n";
     cout << "\t\t\t\t\t\t    ********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     string labNo, labTopic, labType, date, remarks, data;
     fstream file;
     string courseLab;
@@ -1493,12 +1579,14 @@ void viewLab(string s1, string course, int numberOfStudent)
 void createLab(string course, string str)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    ********************    \n";
     cout << "\t\t\t\t\t\t      << Create Lab >>    \n";
     cout << "\t\t\t\t\t\t    ********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     int i, choice;
     List<Lab> labList[100];
     string enrollment, studentName, data;
@@ -1515,9 +1603,11 @@ void createLab(string course, string str)
 
         if (!(isdigit(labNo[0])))
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
             cout << "\n\t\t\tYour lab No shoud be number..." << endl;
             cout << "\n\t\t\t";
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
             continue;
         }
@@ -1532,11 +1622,12 @@ void createLab(string course, string str)
 
         if (labTopic.length()<4)
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
             cout << "\n\t\t\tYour lab Topic shoud be at least 4 character..." << endl;
             cout << "\n\t\t\tif You Dont have Lab Topic Then Enter \"NILL\"..." << endl;
             cout << "\n\t\t\t";
-
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
             continue;
         }
@@ -1554,7 +1645,9 @@ void createLab(string course, string str)
         }
         else
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "Invalid Type" << endl;
+            SetConsoleTextAttribute(hConsole, 6);
             cout << "\n\t\t\t";
             system("pause");
             continue;
@@ -1587,11 +1680,12 @@ void createLab(string course, string str)
 
         if (date.length() < 6)
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
             cout << "\n\t\t\tYour Date shoud be at least 6 character..." << endl;
             cout << "\n\t\t\tYour Date should be \"day-monthe-year\"   (02-08-2023)..." << endl;
             cout << "\n\t\t\t";
-
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
             continue;
         }
@@ -1605,11 +1699,12 @@ void createLab(string course, string str)
 
         if (labTopic.length() < 4)
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\t\t\tPlease Enter Correct Data..." << endl;
             cout << "\n\t\t\tYour Remarks shoud be at least 4 character..." << endl;
             cout << "\n\t\t\tif You Dont have Remarks Then Enter \"NILL\"..." << endl;
             cout << "\n\t\t\t";
-
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
             continue;
         }
@@ -1672,7 +1767,9 @@ void createLab(string course, string str)
                     searchStudentByEnrollment(start, labList[j]);
                     break;
                 default:
+                    SetConsoleTextAttribute(hConsole, 4);
                     cout << "\n\n\n\t\t\t\t\t  Invalid Choice";
+                    SetConsoleTextAttribute(hConsole, 6);
                 }
                 cout << "\n\t\t\t Do you want to mark another student\n\t\t\t [y/Y] Yes\n\t\t\t [n/N] No\n";
                 cout << "\n\t\t\t Enter choice: ";
@@ -1696,12 +1793,14 @@ void createLab(string course, string str)
 void editlab(string s1, string course, int numberOfStudent)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t\t\t    ******************   \n";
     cout << "\t\t\t\t\t\t\t\t       << Edit Lab >>    \n";
     cout << "\t\t\t\t\t\t\t\t    ******************   \n";
+    SetConsoleTextAttribute(hConsole, 6);
     List<Lab> labList[100];
     string studentName, enrollment, labNo, labName, labType, data, date, remarks;
     float rubric1, rubric2, rubric3, rubric4, total;
@@ -1820,12 +1919,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
     string str = {};
     string str2 = {};
     char ch;
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    *********************   \n";
     cout << "\t\t\t\t\t\t      << Searching >>    \n";
     cout << "\t\t\t\t\t\t    *********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     labList.traverse();
     cout << "\n\n\t\t\tEnter Student to search: ";
     ch = _getch();
@@ -1859,12 +1960,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
                 str2.push_back(ch);
             }
         }
+        SetConsoleTextAttribute(hConsole, 3);
         cout << "\n\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t                           Lab Evaluation System                                \n\n";
         cout << "\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t\t\t       << Searching >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
+        SetConsoleTextAttribute(hConsole, 6);
         labList.traverse();
         cout << "\n\n\t\t\tEnter Student to search: ";
         for (int i = 0; i < str.size(); i++)
@@ -1876,7 +1979,9 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
 
         }
         cout << endl;
+        SetConsoleTextAttribute(hConsole, 9);
         cout << "\n\t\t\t\t\t----   Suggestions -----" << endl;
+        SetConsoleTextAttribute(hConsole, 6);
         tree.printAutoSuggestions(str);
         ch = _getch();
         if (ch <= 90 && ch >= 65)
@@ -1907,7 +2012,10 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
             }
             else
             {
+                SetConsoleTextAttribute(hConsole, 4);
                 cout << "\n\n\t\t\t\t\t Error!!!";
+                SetConsoleTextAttribute(hConsole, 6);
+
             }
         }
         i++;
@@ -1917,18 +2025,82 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
 void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
 {
     string key;
+    
     system("cls");
+    string str = {};
+    string str2 = {};
     char ch;
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t       << Searching >>    \n";
+    cout << "\t\t\t\t\t\t      << Searching >>    \n";
     cout << "\t\t\t\t\t\t    *********************    \n";
+    SetConsoleTextAttribute(hConsole, 6);
     labList.traverse();
     cout << "\n\n\t\t\tEnter Student to search: ";
-    cin.ignore();
-    getline(cin, key);
+    ch = _getch();
+ /*   if (ch <= 90 && ch >= 65)
+    {
+        ch = ch + 32;
+    }*/
+    //This Loop will input ch from user and will keep on suggesting names until ENTER is pressed
+    while (ch != 13) //13 is ASCII code of ENTER key so while loop will continue until Enter is pressed
+    {
+
+        system("cls");
+        if (ch == 8) //8 is ASCII code of Backspace key so when backspace is pressed it will pop character
+        {
+            if (str.length() > 0)
+            {
+                str = str.erase(str.size() - 1);
+                str2 = str2.erase(str2.size() - 1);
+            }
+        }
+        else if (ch == ' ')
+        {
+            str.push_back('{');
+            str2.push_back(' ');
+        }
+        else
+        {
+            if (ch >= 97 && ch <= 122)
+            {
+                str.push_back(ch);
+                str2.push_back(ch);
+            }
+        }
+        SetConsoleTextAttribute(hConsole, 3);
+        cout << "\n\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+        cout << "\t\t\t******************************************************************************\n\n";
+        cout << "\t\t\t\t\t\t    *********************   \n";
+        cout << "\t\t\t\t\t\t       << Searching >>    \n";
+        cout << "\t\t\t\t\t\t    *********************    \n";
+        SetConsoleTextAttribute(hConsole, 6);
+
+        labList.traverse();
+        cout << "\n\n\t\t\tEnter Student to search: ";
+        for (int i = 0; i < str.size(); i++)
+        {
+            if (str[i] != '{')
+                cout << str[i];
+            else
+                cout << " ";
+
+        }
+        cout << endl;
+        SetConsoleTextAttribute(hConsole, 9);
+        cout << "\n\t\t\t\t\t----   Suggestions -----" << endl;
+        SetConsoleTextAttribute(hConsole, 6);
+        tree.printAutoSuggestions(str);
+        ch = _getch();
+        if (ch <= 90 && ch >= 65)
+        {
+            ch = ch + 32;
+        }
+    }
     Lab obj1[100];
     int i = 0;
     for (Node<Lab>* ptr = start; ptr != NULL; ptr = ptr->next)
@@ -1954,7 +2126,9 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
             }
             else
             {
+                SetConsoleTextAttribute(hConsole, 4);
                 cout << "\n\t\t\t\t\t\t\t Error!!!";
+                SetConsoleTextAttribute(hConsole, 6);
             }
         }
         i++;
@@ -1967,7 +2141,9 @@ Lab updation(Lab& obj)
     int new_rubric1, new_rubric2, new_rubric3, new_rubric4;
     while (true)
     {
+        SetConsoleTextAttribute(hConsole, 9);
         cout << "\n\n\t\t\trubrics1\t\trubrics2\t\trubrics3\t\trubrics4 \n";
+        SetConsoleTextAttribute(hConsole, 6);
         cout << "\t\t\t";
         rubric1 = _getche();
         cout << "\t\t\t ";
@@ -1986,8 +2162,10 @@ Lab updation(Lab& obj)
             break;
         else
         {
+            SetConsoleTextAttribute(hConsole, 4);
             cout << "\n\n\t\t\tYour Marks Should be 5 or Less then 5\n";
             cout << "\t\t\t";
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
             continue;
         }
@@ -2005,12 +2183,14 @@ Lab updation(Lab& obj)
 void calculateResult(string s1, string course, int numberOfStudent)
 {
     system("cls");
+    SetConsoleTextAttribute(hConsole, 3);
     cout << "\n\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
     cout << "\t\t\t\t\t******************************************************************************\n\n";
     cout << "\t\t\t\t\t\t\t\t    *********************   \n";
     cout << "\t\t\t\t\t\t\t\t      << Result list >>    \n";
     cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    SetConsoleTextAttribute(hConsole,6);
     List<Lab> labResultList, list;
     string studentName, enrollment, labNo, labName, labType, data;
     float result;

@@ -103,10 +103,10 @@ private:
 
         for (char index = 0; index < ALPHABET_SIZE; ++index) {
             char next = 'a' + index;
-            struct TreeNode const* pChild = node->children[index];
-            if (pChild) {
+            struct TreeNode const* presentChild = node->children[index];
+            if (presentChild) {
                 prefix.push_back(next);
-                display(prefix, pChild);
+                display(prefix, presentChild);
                 prefix.pop_back();
             }
         }
