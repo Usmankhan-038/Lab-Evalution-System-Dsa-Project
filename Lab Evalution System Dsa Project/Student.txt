@@ -1,3 +1,3 @@
 
 01-131212-001|usman|usman|Male|20|03099715231|fk514955@gmail.com|CF|CP
-01-131212-002|Adil|adil|Male|21|03001523231|adil@gmail.com|CF|CP
+01-131212-002|Adil|Adil|Male|21|03099715231|Adil@gmail.com|CF|CP

@@ -314,6 +314,7 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
     char choice = 'y';
     while (choice == 'y' || choice == 'Y')
     {
+        SetConsoleTextAttribute(hConsole, 3);
         system("cls");
         cout << "\n\t\t\t******************************************************************************\n\n";
         cout << "\t\t\t                           Lab Evaluation System                                \n\n";
@@ -321,7 +322,7 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t\t\t    *********************   \n";
         cout << "\t\t\t\t\t\t      << Admin Login >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
-        SetConsoleTextAttribute(hConsole, 3);
+        SetConsoleTextAttribute(hConsole,6);
 
         string number = "usman123";
         string id = "usman@123";
@@ -356,7 +357,9 @@ void adminLogin(List<Lab>& studentList, List<Teacher>& teacherList)
         }
         if (pass == number && iD == id)
         {
+            SetConsoleTextAttribute(hConsole, 2);
             cout << "\n\n\n\t\t\t\t\t\t  << login successfully >>\n\n";
+            SetConsoleTextAttribute(hConsole, 6);
             cout << "\t\t\t\t";
             system("pause");
             Admin(studentList, teacherList);
@@ -1014,7 +1017,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t\t\t     << Student List >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(15) << "Gender" << setw(15) << "Age" << setw(20) << "Phone Number" << setw(22) << "Email" << setw(40) << "Course" << endl;
+        cout << setw(20) << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(10) << "Gender" << setw(5) << "Age" << setw(20) << "Phone Number" << setw(25) << "Email" << setw(30) << "Course" << endl;
         file.open("Student.txt");
         getline(file, data);
         while (!file.eof())
@@ -1028,7 +1031,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, phoneNumber, '|');
             getline(file, email, '|');
             getline(file, course);
-            cout << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(15) << gender << setw(15) << age << setw(20) << phoneNumber << setw(22) << email << setw(40) << course;
+            cout << setw(20) << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(10) << gender << setw(5) << age << setw(20) << phoneNumber << setw(25) << email << setw(30) << course;
             cout << endl;
         }
         file.close();
@@ -1044,7 +1047,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t     << Teacher List >>    \n";
         cout << "\t\t\t\t    *********************    \n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << "\t\t\t" << "Name" << setw(30) << "ID" << setw(25) << "Password" << setw(30) << "Course" << endl;
+        cout << "\t\t\t"<< setw(30) << "Name" << setw(20) << "ID" << setw(25) << "Password" << setw(30) << "Course" << endl;
         file.open("Teacher.txt");
         getline(file, data2);
         while (!file.eof())
@@ -1053,7 +1056,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, id, '|');
             getline(file, password, '|');
             getline(file, courseT);
-            cout << "\t\t\t" << teacherName << setw(30) << id << setw(25) << password << setw(30) << courseT;
+            cout << "\t\t\t" <<setw(30) << teacherName << setw(20) << id << setw(25) << password << setw(30) << courseT;
             cout << endl;
         }
         file.close();
@@ -1138,8 +1141,10 @@ void teacherLogin()
         file.close();
         if (check == true)
         {
+            SetConsoleTextAttribute(hConsole, 2);
             cout << "\n\n\n\t\t\t\t\t\t  << login successfully >>\n";
             cout << "\n\t\t\t";
+            SetConsoleTextAttribute(hConsole, 6);
             system("pause");
 
             teacherCourse(course);
@@ -1553,13 +1558,14 @@ void viewLab(string s1, string course, int numberOfStudent)
     string labNo, labTopic, labType, date, remarks, data;
     fstream file;
     string courseLab;
+    bool isEmpty = false;
     courseLab = course + " Lab.txt";
     cout << "\n\n\t\t\tDisplaying detial of " << course << " lab\n\n";
-    cout << "\n\t\t"<<setw(10) << "Lab No" << setw(30) << "Lab Topic" << setw(30) << "Lab Type" << setw(30) << "Date" << setw(30) << "Remark\n";
+    cout << "\n\t\t"<<setw(5) << "Lab No" << setw(20) << "Lab Topic" << setw(20) << "Lab Type" << setw(20) << "Date" << setw(20) << "Remark\n";
     int i;
     file.open(courseLab);
     getline(file, data);
-    bool isEmpty = false;
+    
     while (!file.eof())
     {
         getline(file, labNo);
@@ -1577,11 +1583,13 @@ void viewLab(string s1, string course, int numberOfStudent)
         {
             getline(file, data);
         }
-        cout << "\n\t\t"<< setw(10) << labNo << setw(30) << labTopic << setw(30) << labType << setw(30) << date << setw(30) << remarks << endl;
+        cout << "\n\t\t"<< setw(5) << labNo << setw(20) << labTopic << setw(20) << labType << setw(20) << date << setw(20) << remarks << endl;
     }
+    SetConsoleTextAttribute(hConsole, 1);
     if (isEmpty)
         cout << "\n\t\tThere is No Lab Created....\n\t\t";
     system("pause");
+    SetConsoleTextAttribute(hConsole, 6);
     teacherLab(s1, course);
 }
 
@@ -1874,8 +1882,10 @@ void editlab(string s1, string course, int numberOfStudent)
     }
     if (isEmpty)
     {
+        SetConsoleTextAttribute(hConsole, 1);
         cout << "\n\t\t\t\tThere is No Lab Created....\n\t\t\t\t";
         system("pause");
+        SetConsoleTextAttribute(hConsole, 6);
         teacherLab(s1, course);
     }
     file.clear();
@@ -2012,11 +2022,16 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
     }
     Lab obj1[100];
     int i = 0;
+    bool found = false;
     for (Node<Lab>* ptr = start; ptr != NULL; ptr = ptr->next)
     {
         obj1[i] = ptr->info;
         if (str2 == obj1[i].getStudentName()) // found
         {
+            SetConsoleTextAttribute(hConsole, 1);
+            found = true;
+            cout << "\n\n\t\t\t\t\tPlease Enter Marks of " << obj1[i].getStudentName() << " ( " << obj1[i].getEnrollment() << " ) \n\n";
+            SetConsoleTextAttribute(hConsole, 6);
             if (i == 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
@@ -2041,118 +2056,68 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
         }
         i++;
     }
+    if (!found)
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        cout << "\n\t\t\tNo Record Found....\n";
+        SetConsoleTextAttribute(hConsole, 6);
+    }
+    
 }
 
 void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
 {
     string key;
-    
     system("cls");
-    string str = {};
-    string str2 = {};
-    char ch;
     SetConsoleTextAttribute(hConsole, 3);
-    cout << "\n\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t      << Searching >>    \n";
-    cout << "\t\t\t\t\t\t    *********************    \n";
+    char ch;
+    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t\t\t       << Searching >>    \n";
+    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
     SetConsoleTextAttribute(hConsole, 6);
     labList.traverse();
-    cout << "\n\n\t\t\tEnter Student to search: ";
-    ch = _getch();
- /*   if (ch <= 90 && ch >= 65)
-    {
-        ch = ch + 32;
-    }*/
-    //This Loop will input ch from user and will keep on suggesting names until ENTER is pressed
-    while (ch != 13) //13 is ASCII code of ENTER key so while loop will continue until Enter is pressed
-    {
-
-        system("cls");
-        if (ch == 8) //8 is ASCII code of Backspace key so when backspace is pressed it will pop character
-        {
-            if (str.length() > 0)
-            {
-                str = str.erase(str.size() - 1);
-                str2 = str2.erase(str2.size() - 1);
-            }
-        }
-        else if (ch == ' ')
-        {
-            str.push_back('{');
-            str2.push_back(' ');
-        }
-        else
-        {
-            if (ch >= 97 && ch <= 122)
-            {
-                str.push_back(ch);
-                str2.push_back(ch);
-            }
-        }
-        SetConsoleTextAttribute(hConsole, 3);
-        cout << "\n\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t                           Lab Evaluation System                                \n\n";
-        cout << "\t\t\t******************************************************************************\n\n";
-        cout << "\t\t\t\t\t\t    *********************   \n";
-        cout << "\t\t\t\t\t\t       << Searching >>    \n";
-        cout << "\t\t\t\t\t\t    *********************    \n";
-        SetConsoleTextAttribute(hConsole, 6);
-
-        labList.traverse();
-        cout << "\n\n\t\t\tEnter Student to search: ";
-        for (int i = 0; i < str.size(); i++)
-        {
-            if (str[i] != '{')
-                cout << str[i];
-            else
-                cout << " ";
-
-        }
-        cout << endl;
-        SetConsoleTextAttribute(hConsole, 9);
-        cout << "\n\t\t\t\t\t----   Suggestions -----" << endl;
-        SetConsoleTextAttribute(hConsole, 6);
-        tree.printAutoSuggestions(str);
-        ch = _getch();
-        if (ch <= 90 && ch >= 65)
-        {
-            ch = ch + 32;
-        }
-    }
+    cout << "\n\n\t\t\t\t\tEnter Student to search: ";
+    cin.ignore();
+    getline(cin, key);
     Lab obj1[100];
+    bool found = false;
     int i = 0;
     for (Node<Lab>* ptr = start; ptr != NULL; ptr = ptr->next)
     {
-
         obj1[i] = ptr->info;
-        if (key == obj1[i].getEnrollment()) // found
+        if (key == obj1[i].getEnrollment() || key==obj1[i].getEnrollment().substr(obj1[i].getEnrollment().length() - 3)) // found
         {
-
+            found = true;
+            SetConsoleTextAttribute(hConsole, 1);
+            cout << "\n\n\t\t\t\t\tPlease Enter Marks of " << obj1[i].getStudentName() << " ( " << obj1[i].getEnrollment() << " ) \n\n";
+            SetConsoleTextAttribute(hConsole, 6);
             if (i == 0)
             {
-
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
                 obj1[i] = updation(obj1[i]);
                 labList.insertAtStart(obj1[i]);
             }
             else if (i > 0)
             {
-
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
                 obj1[i] = updation(obj1[i]);
                 labList.insertAtMiddle(obj1[i - 1], obj1[i]);
             }
             else
             {
-                SetConsoleTextAttribute(hConsole, 4);
                 cout << "\n\t\t\t\t\t\t\t Error!!!";
-                SetConsoleTextAttribute(hConsole, 6);
             }
         }
         i++;
+    }
+    if (!found)
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        cout << "\n\t\t\tNo Record Found....\n";
+        SetConsoleTextAttribute(hConsole, 6);
     }
 }
 
@@ -2205,12 +2170,12 @@ void calculateResult(string s1, string course, int numberOfStudent)
 {
     system("cls");
     SetConsoleTextAttribute(hConsole, 3);
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t      << Result list >>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t      << Result list >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     SetConsoleTextAttribute(hConsole,6);
     List<Lab> labResultList, list;
     string studentName, enrollment, labNo, labName, labType, data;
@@ -2233,9 +2198,16 @@ void calculateResult(string s1, string course, int numberOfStudent)
     file1.close();
     file.open(fileName);
     getline(file, data);
+    bool isEmpty = false;
     while (!file.eof())
     {
         getline(file, labNo);
+        if (labNo == "")
+        {
+            isEmpty = true;
+            break;
+        }
+            
         getline(file, labName);
         getline(file, labType);
         getline(file, data);
@@ -2275,6 +2247,14 @@ void calculateResult(string s1, string course, int numberOfStudent)
             labResultList.insertAtEnd(obj);
             i++;
         }
+    }
+    if (isEmpty)
+    {
+        SetConsoleTextAttribute(hConsole, 1);
+        cout << "\n\n\t\t\t\t\tThere is No Lab Created..." << endl;
+        system("pause");
+        SetConsoleTextAttribute(hConsole, 6);
+        teacherLab(s1, course);
     }
     float total;
     file.close();
