@@ -255,9 +255,9 @@ void teacherCourse(string course);
 void teacherLab(string str, string course);
 void createLab(string course, string str);
 void editlab(string s1, string course, int numberOfStudent);
-void searchStudentByName(Node<Lab>* start, List<Lab>& labList);
-void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList);
-Lab updation(Lab& obj);
+void searchStudentByName(Node<Lab>* start, List<Lab>& labList,string type);
+void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList, string type);
+Lab updation(Lab& obj, string type);
 void viewLab(string s1, string course, int numberOfStudent);
 void calculateResult(string s1, string course, int numberOfStudent);
 void viewLab(string course, int numberOfStudent);
@@ -1778,10 +1778,10 @@ void createLab(string course, string str)
                 switch (choice1)
                 {
                 case 1:
-                    searchStudentByName(start, labList[j]);
+                    searchStudentByName(start, labList[j], labType);
                     break;
                 case 2:
-                    searchStudentByEnrollment(start, labList[j]);
+                    searchStudentByEnrollment(start, labList[j], labType);
                     break;
                 default:
                     SetConsoleTextAttribute(hConsole, 4);
@@ -1916,10 +1916,10 @@ void editlab(string s1, string course, int numberOfStudent)
                     switch (choice1)
                     {
                     case 1:
-                        searchStudentByName(start, labList[k]);
+                        searchStudentByName(start, labList[k], labType);
                         break;
                     case 2:
-                        searchStudentByEnrollment(start, labList[k]);
+                        searchStudentByEnrollment(start, labList[k], labType);
                         break;
                     default:
                         cout << "Invalid Choice";
@@ -1944,7 +1944,7 @@ void editlab(string s1, string course, int numberOfStudent)
     teacherLab(s1, course);
 }
 
-void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
+void searchStudentByName(Node<Lab>* start, List<Lab>& labList,string type)
 {
     system("cls");
     string str = {};
@@ -2035,14 +2035,14 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
             if (i == 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
-                obj1[i] = updation(obj1[i]);
+                obj1[i] = updation(obj1[i], type);
                 labList.insertAtStart(obj1[i]);
                 break;
             }
             else if (i > 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
-                obj1[i] = updation(obj1[i]);
+                obj1[i] = updation(obj1[i], type);
                 labList.insertAtMiddle(obj1[i - 1], obj1[i]);
                 break;
             }
@@ -2065,7 +2065,7 @@ void searchStudentByName(Node<Lab>* start, List<Lab>& labList)
     
 }
 
-void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
+void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList,string type)
 {
     string key;
     system("cls");
@@ -2097,13 +2097,13 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
             if (i == 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
-                obj1[i] = updation(obj1[i]);
+                obj1[i] = updation(obj1[i], type);
                 labList.insertAtStart(obj1[i]);
             }
             else if (i > 0)
             {
                 obj1[i] = labList.deleteAtMiddle(obj1[i]);
-                obj1[i] = updation(obj1[i]);
+                obj1[i] = updation(obj1[i],type);
                 labList.insertAtMiddle(obj1[i - 1], obj1[i]);
             }
             else
@@ -2121,16 +2121,43 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList)
     }
 }
 
-Lab updation(Lab& obj)
+Lab updation(Lab& obj,string type)
 {
-    char rubric1, rubric2, rubric3, rubric4;
-    int new_rubric1, new_rubric2, new_rubric3, new_rubric4;
+    char rubric1, rubric2, rubric3, rubric4,report1,report2;
+    string reportMark;
+    int new_rubric1, new_rubric2, new_rubric3, new_rubric4,reportMarks=0;
+    if (type == "Project")
+    {
+        cout << "\t\t\t-------------------------<< Project Marks >>-----------------------------------\t--------<< Report Marks >>--------- \n\n";
+    }
+    else
+    {
+        cout << "\t\t\t----------------------------<< "<<type<<" Marks >>------------------------------------\n\n";
+        cout << "\t\t\tPlease Enter Mark between 0 to 5 in every Rubric\n";
+        cout << "\t\t\tThe Program should convert Marks to ";
+        if (type == "Normal")
+        {
+            cout << "4\n\n";
+        }
+        else if (type == "OpenEnded")
+        {
+            cout << "6\n\n";
+        }
+        else if (type == "Mid")
+        {
+            cout << "12\n\n";
+        }
+    }
+    
     while (true)
     {
         SetConsoleTextAttribute(hConsole, 9);
-        cout << "\n\n\t\t\trubrics1\t\trubrics2\t\trubrics3\t\trubrics4 \n";
+        cout << "\n\n\t\t\tRubric 1\t\tRubric 2\t\tRubric 3\t\tRubric 4 ";
+        if (type == "Project")
+            cout << "\t\tReport Marks";
+        cout << "\n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << "\t\t\t";
+        cout << "\t\t\t\t";
         rubric1 = _getche();
         cout << "\t\t\t ";
         rubric2 = _getche();
@@ -2138,11 +2165,17 @@ Lab updation(Lab& obj)
         rubric3 = _getche();
         cout << "\t\t\t ";
         rubric4 = _getche();
+        cout << "\t\t\t ";
+        report1 = _getche();
+      //  report2 = _getche();
+       // reportMark = report1 + report2;
 
         new_rubric1 = rubric1 - '0';
         new_rubric2 = rubric2 - '0';
         new_rubric3 = rubric3 - '0';
         new_rubric4 = rubric4 - '0';
+        reportMarks = report1 -'0';
+       // reportMarks = stoi(reportMark);
 
         if (new_rubric1 <= 5 || new_rubric2 <= 5 || new_rubric3 <= 5 || new_rubric4 <= 5)
             break;
@@ -2157,7 +2190,7 @@ Lab updation(Lab& obj)
         }
     }
     
-    float new_total = new_rubric1 + new_rubric2 + new_rubric3 + new_rubric4;
+    float new_total = new_rubric1 + new_rubric2 + new_rubric3 + new_rubric4+reportMarks;
     obj.setRubOne(new_rubric1);
     obj.setRubSec(new_rubric2);
     obj.setRubThrd(new_rubric3);
