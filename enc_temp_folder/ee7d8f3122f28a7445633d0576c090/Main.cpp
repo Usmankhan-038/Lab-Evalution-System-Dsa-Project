@@ -2351,7 +2351,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
                 {
                     SetConsoleTextAttribute(hConsole, 12);
                     cout << "\t" << obj1.getResult();
-                    SetConsoleTextAttribute(hConsole, 6);
+                    SetConsoleTextAttribute(hConsole, 3);
                 }
                 else
                 {
@@ -2360,18 +2360,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
                 total += obj1.getResult();
             }
         }
-        if (obj1.getResult() < 50)
-        {
-            SetConsoleTextAttribute(hConsole, 12);
-            cout << "\t" << total;
-            SetConsoleTextAttribute(hConsole, 6);
-        }
-        else
-        {
-            SetConsoleTextAttribute(hConsole, 14);
-            cout << "\t" << total;
-            SetConsoleTextAttribute(hConsole, 6);
-        }
+        cout << "\t" << total;
     }
     cout << "\n\t\t\t";
     system("pause");
