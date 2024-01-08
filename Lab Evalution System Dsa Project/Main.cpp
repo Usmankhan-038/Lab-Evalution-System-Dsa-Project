@@ -2071,12 +2071,12 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList,string type)
     system("cls");
     SetConsoleTextAttribute(hConsole, 3);
     char ch;
-    cout << "\n\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t                           Lab Evaluation System                                \n\n";
-    cout << "\t\t\t\t\t******************************************************************************\n\n";
-    cout << "\t\t\t\t\t\t\t\t    *********************   \n";
-    cout << "\t\t\t\t\t\t\t\t       << Searching >>    \n";
-    cout << "\t\t\t\t\t\t\t\t    *********************    \n";
+    cout << "\n\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t                           Lab Evaluation System                                \n\n";
+    cout << "\t\t\t******************************************************************************\n\n";
+    cout << "\t\t\t\t\t\t    *********************   \n";
+    cout << "\t\t\t\t\t\t       << Searching >>    \n";
+    cout << "\t\t\t\t\t\t    *********************    \n";
     SetConsoleTextAttribute(hConsole, 6);
     labList.traverse();
     cout << "\n\n\t\t\t\t\tEnter Student to search: ";
@@ -2123,19 +2123,24 @@ void searchStudentByEnrollment(Node<Lab>* start, List<Lab>& labList,string type)
 
 Lab updation(Lab& obj,string type)
 {
-    char rubric1, rubric2, rubric3, rubric4,report1,report2;
-    string reportMark;
+    char rubric1, rubric2, rubric3, rubric4,report1='0',report2= '0';
+    string charString;
     int new_rubric1, new_rubric2, new_rubric3, new_rubric4,reportMarks=0;
     if (type == "Project")
     {
         SetConsoleTextAttribute(hConsole,14);
         cout << "\t\t\t-------------------------<< Project Marks >>-----------------------------------\t--------<< Report Marks >>--------- \n\n";
+        SetConsoleTextAttribute(hConsole, 11);
+        cout << "\t\t\tPlease Enter Mark between 0 to 5 in every Rubric\n";
+        cout << "\t\t\tThe Program should convert Marks to 20\n";
+        cout << "\t\t\tYou Should Enter Two Digits in Report Marks between 0 to 10\n";
+        cout << "\t\t\tIf Marks is Less Then 10 Please Write \'0\' Before e.g: \'01\'\n";
         SetConsoleTextAttribute(hConsole, 3);
     }
     else
     {
         SetConsoleTextAttribute(hConsole, 14);
-        cout << "\t\t\t----------------------------<< "<<type<<" Marks >>------------------------------------\n\n";
+        cout << "\t\t\t----------------------------<< "<<type<<" Lab Marks >>------------------------------------\n\n";
         SetConsoleTextAttribute(hConsole, 11);
         cout << "\t\t\tPlease Enter Mark between 0 to 5 in every Rubric\n";
         cout << "\t\t\tThe Program should convert Marks to ";
@@ -2162,16 +2167,23 @@ Lab updation(Lab& obj,string type)
             cout << "\t\tReport Marks";
         cout << "\n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << "\t\t\t\t";
+        cout << "\t\t\t   ";
         rubric1 = _getche();
-        cout << "\t\t\t ";
+        cout << "\t\t\t   ";
         rubric2 = _getche();
-        cout << "\t\t\t ";
+        cout << "\t\t\t   ";
         rubric3 = _getche();
-        cout << "\t\t\t ";
+        cout << "\t\t\t   ";
         rubric4 = _getche();
-        cout << "\t\t\t ";
-        report1 = _getche();
+        
+        if (type == "Project")
+        {
+            cout << "\t\t\t   ";
+            report1 = _getche();
+            report2 = _getche();
+            charString = std::string(1, report1) + std::string(1, report2);
+        }
+       
       //  report2 = _getche();
        // reportMark = report1 + report2;
 
@@ -2179,11 +2191,26 @@ Lab updation(Lab& obj,string type)
         new_rubric2 = rubric2 - '0';
         new_rubric3 = rubric3 - '0';
         new_rubric4 = rubric4 - '0';
-        reportMarks = report1 -'0';
+        if (type == "Project")
+        {
+            reportMarks = stoi(charString);
+        }
+       
        // reportMarks = stoi(reportMark);
 
-        if (new_rubric1 <= 5 || new_rubric2 <= 5 || new_rubric3 <= 5 || new_rubric4 <= 5)
-            break;
+        if (new_rubric1 <= 5 && new_rubric2 <= 5 && new_rubric3 <= 5 && new_rubric4 <= 5&&reportMarks<=10)
+        {
+           break;
+        }
+        else if (reportMarks > 10)
+        {
+            SetConsoleTextAttribute(hConsole, 4);
+            cout << "\n\n\t\t\tYour Marks Should be 10 or Less then 10\n";
+            cout << "\t\t\t";
+            SetConsoleTextAttribute(hConsole, 6);
+            system("pause");
+            continue;
+        }
         else
         {
             SetConsoleTextAttribute(hConsole, 4);
@@ -2325,6 +2352,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
         break;
         
     }
+    SetConsoleTextAttribute(hConsole, 14);
     cout << "\n\t\t\t" << "Enrollment\tName\t";
     for (int i = 0; i < size; ++i)
     {
@@ -2336,6 +2364,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
             cout << "Lab# " << i + 1 << "\t";
     }
     cout << "Result";
+    SetConsoleTextAttribute(hConsole, 3);
     for (Node<Lab>* ptr1 = start1; ptr1 != NULL; ptr1 = ptr1->next)
     {
         obj = ptr1->info;
