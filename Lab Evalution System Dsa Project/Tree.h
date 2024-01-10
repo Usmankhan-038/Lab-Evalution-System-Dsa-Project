@@ -12,11 +12,8 @@ private:
     {
         struct TreeNode* children[ALPHABET_SIZE];
 
-        // isWordEnd is true if the node represents 
-        // end of a word 
         bool isWordEnd;
     };
-    // Returns new trie node (initialized to NULLs) 
     struct TreeNode* getNode()
     {
         struct TreeNode* CurrentNode = new TreeNode;
@@ -28,8 +25,6 @@ private:
         return CurrentNode;
     };
     struct TreeNode* root;
-    // If not present, inserts key into trie.  If the 
-    // key is prefix of trie node, just marks leaf node 
     void insert(struct TreeNode* root, const string key)
     {
         struct TreeNode* currentNode = root;
@@ -43,7 +38,6 @@ private:
             currentNode = currentNode->children[index];
         }
 
-        // mark last node as leaf 
         currentNode->isWordEnd = true;
     }
     // Returns 0 if current node has a child 
@@ -97,7 +91,7 @@ private:
             }
         }
     }
-    void display(std::string& prefix, struct TreeNode const* node) {
+    void display(string& prefix, struct TreeNode const* node) {
         if (node->isWordEnd)
             cout << prefix << endl;
 
@@ -121,7 +115,7 @@ public:
         insert(root, query);
     }
     // Returns true if key presents in trie, else false 
-    bool search(const string key)
+    bool search(string key)
     {
         int length = key.length();
         struct TreeNode* currentNode = root;
@@ -139,7 +133,7 @@ public:
     }
 
     // print suggestions for given query prefix. 
-    int printAutoSuggestions(const string query)
+    int printAutoSuggestions(string query)
     {
         struct TreeNode* currentNode = root;
 

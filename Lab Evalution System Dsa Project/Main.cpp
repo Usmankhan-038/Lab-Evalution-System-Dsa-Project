@@ -1017,7 +1017,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t\t\t     << Student List >>    \n";
         cout << "\t\t\t\t\t\t    *********************    \n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << setw(20) << "Enrollment" << setw(30) << "Student Name" << setw(30) << "Father Name" << setw(10) << "Gender" << setw(5) << "Age" << setw(20) << "Phone Number" << setw(25) << "Email" << setw(30) << "Course" << endl;
+        cout << setw(20) << "Enrollment" << setw(25) << "Student Name" << setw(25) << "Father Name" << setw(5) << "Gender" << setw(5) << "Age" << setw(20) << "Phone Number" << setw(20) << "Email" << setw(20) << "Course" << endl;
         file.open("Student.txt");
         getline(file, data);
         while (!file.eof())
@@ -1031,7 +1031,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, phoneNumber, '|');
             getline(file, email, '|');
             getline(file, course);
-            cout << setw(20) << enrollment << setw(30) << studentName << setw(30) << fatherName << setw(10) << gender << setw(5) << age << setw(20) << phoneNumber << setw(25) << email << setw(30) << course;
+            cout << setw(20) << enrollment << setw(25) << studentName << setw(25) << fatherName << setw(5) << gender << setw(5) << age << setw(20) << phoneNumber << setw(20) << email << setw(20) << course;
             cout << endl;
         }
         file.close();
@@ -1047,7 +1047,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
         cout << "\t\t\t\t     << Teacher List >>    \n";
         cout << "\t\t\t\t    *********************    \n";
         SetConsoleTextAttribute(hConsole, 6);
-        cout << "\t\t\t"<< setw(30) << "Name" << setw(20) << "ID" << setw(25) << "Password" << setw(30) << "Course" << endl;
+        cout << "\t"<< setw(30) << "Name" << setw(20) << "ID" << setw(25) << "Password" << setw(30) << "Course" << endl;
         file.open("Teacher.txt");
         getline(file, data2);
         while (!file.eof())
@@ -1056,7 +1056,7 @@ void viewDetail(List<Lab>& studentList, List<Teacher>& teacherList)
             getline(file, id, '|');
             getline(file, password, '|');
             getline(file, courseT);
-            cout << "\t\t\t" <<setw(30) << teacherName << setw(20) << id << setw(25) << password << setw(30) << courseT;
+            cout << "\t" <<setw(30) << teacherName << setw(20) << id << setw(25) << password << setw(30) << courseT;
             cout << endl;
         }
         file.close();
@@ -2364,7 +2364,7 @@ void calculateResult(string s1, string course, int numberOfStudent)
             cout << "Lab# " << i + 1 << "\t";
     }
     cout << "Result";
-    SetConsoleTextAttribute(hConsole, 3);
+    SetConsoleTextAttribute(hConsole, 6);
     for (Node<Lab>* ptr1 = start1; ptr1 != NULL; ptr1 = ptr1->next)
     {
         obj = ptr1->info;
